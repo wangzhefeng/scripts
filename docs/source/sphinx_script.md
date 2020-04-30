@@ -1,17 +1,27 @@
 
 # Sphinx Doc
 
+Sphinx is a powerful documentation generator that has many great features for writing technical documentation including:
+
+* Generate web pages, printable PDFs, documents for e-readers (ePub), and more all from the same sources
+* You can use reStructuredText or Markdown to write documentation
+* An extensive system of cross-referencing code and documentation
+* Syntax highlighted code samples
+* A vibrant ecosystem of first and third-party [extensions](https://www.sphinx-doc.org/en/master/usage/extensions/index.html#builtin-sphinx-extensions)
+
 ## 安装环境
 
 ```shell
-$ pip3 install sphinx sphinx-autobuild sphinx_rtd_theme
+$ pip3 install sphinx 
+$ pip3 install sphinx-autobuild 
+$ pip3 install sphinx_rtd_theme
 ```
 
 ## 创建文档
 
 ```shell
-$ mkdir doc
-$ cd doc
+$ mkdir docs
+$ cd docs
 $ sphinx quickstart
 ```
 
@@ -25,6 +35,14 @@ html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 ```
 
+
+
+
+
+
+
+
+
 ## 支持 markdown 语法
 
 ```shell
@@ -33,6 +51,10 @@ $ pip3 install recommonmark
 
 ```python
 # ./doc/source/config.py
+
+extensions = [
+    "recommonmark",
+]
 
 from recommonmark.parser import CommonMarkParser
 source_parsers = {
@@ -59,11 +81,21 @@ git push -u origin master
 
 ## 绑定 Read the Docs:
 
+1 [Import your docs.](https://docs.readthedocs.io/en/stable/intro/import-guide.html)
+2. [Read the Docs dashboard](https://readthedocs.org/dashboard/)
+3. [Import](https://readthedocs.org/dashboard/import/?__cf_chl_captcha_tk__=f51d0fd05a6dd27a26845c9bd923a6f42ecfded4-1588260812-0-AVHp7xZY-MfpUWYf-sWQgn7MpabCmi2Dzc_tn4_f3tGxMObBh87mGw19KwybY3HkO9EzmoByZ_vpqhjdGT6oOoXXPt714nvln3sxrf6vsoIa_Q8wQ0aHNgzPEhBiO7u0LyHFxtYsg8cbCFpUY-Y_HPZ-Th-S6BmRj6pZIZPh4ieiR6nrWAmQEqnhPeCl79jRC11MMwJ5Gao4xji5JEufhc98l4D-okayG_5A1B8W2kCEXPaENPFiBc113EpO3E70G03ibg25CfezRwD7jXAG5Sc86TZ_u35SRkn7e_IySD-yEkUec8NRFQRPH6uEhP8RPVXdjKzhFrD7D6s19Uevg8eDXqTCO-y8TjdSTQ_28xcDeBz_jMRyveeYFNp5QgGbXRox5WxdaiMFCGaufD4Aqfc)
 
+## 版本管理
 
+* [Version Doc](https://docs.readthedocs.io/en/stable/versions.html)
+
+## 资源
+
+* [Sphinx documentation](https://www.sphinx-doc.org/en/master/)
+* [RestructuredText primer](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html)
+* [An introduction to Sphinx and Read the Docs for technical writers](https://www.ericholscher.com/blog/2016/jul/1/sphinx-and-rtd-for-writers/)
 
 ## config.py 模板：
-
 
 ```python
 # -*- coding: utf-8 -*-
