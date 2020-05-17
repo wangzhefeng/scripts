@@ -9,7 +9,15 @@ Sphinx is a powerful documentation generator that has many great features for wr
 * Syntax highlighted code samples
 * A vibrant ecosystem of first and third-party [extensions](https://www.sphinx-doc.org/en/master/usage/extensions/index.html#builtin-sphinx-extensions)
 
-## 安装环境
+## 1.安装环境
+
+（1）激活 Python 虚拟环境
+
+```shell
+workon doc_env
+```
+
+（2）安装 Sphinx 及其依赖库
 
 ```shell
 $ pip3 install sphinx 
@@ -17,85 +25,99 @@ $ pip3 install sphinx-autobuild
 $ pip3 install sphinx_rtd_theme
 ```
 
-## 创建文档
+## 2.创建文档
+
+（1）创建 Sphinx Doc 项目目录
 
 ```shell
+$ mkdir project
+$ cd project
 $ mkdir docs
+$ mkdir src
 $ cd docs
+```
+
+（2）创建 Sphinx 项目
+
+```shell
 $ sphinx quickstart
 ```
 
-## 更改主题
+## 3.修改配置文件
+
+### 3.1 更改主题
 
 ```python
-# ./doc/source/config.py
+# ./project/docs/source/conf.py
 
 import sphinx_rtd_theme
+
 html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 ```
 
+### 3.2 支持 markdown 语法
 
-
-
-
-
-
-
-
-## 支持 markdown 语法
+（1）安装扩展库：
 
 ```shell
 $ pip3 install recommonmark
 ```
 
+（2）修改配置：
+
 ```python
-# ./doc/source/config.py
+# ./project/doca/source/conf.py
+
+from recommonmark.parser import CommonMarkParser
 
 extensions = [
     "recommonmark",
 ]
 
-from recommonmark.parser import CommonMarkParser
 source_parsers = {
     '.md': CommonMarkParser,
 }
+
 source_suffix = ['.rst', '.md']
 ```
 
-## 编译文档:
+## 4.编译文档:
 
 ```shell
+cd ./project/docs/
 make html
 ```
 
-## GitHub 代码托管:
+## 5.GitHub 代码托管:
 
 ```shell
+cd ./project/
 touch .gitignore
+
 git init
 git add doc
 git remote add origin git:/github.git
 git push -u origin master
 ```
 
-## 绑定 Read the Docs:
+## 6.绑定 Read the Docs:
 
-1 [Import your docs.](https://docs.readthedocs.io/en/stable/intro/import-guide.html)
+1. [Import your docs.](https://docs.readthedocs.io/en/stable/intro/import-guide.html)
 2. [Read the Docs dashboard](https://readthedocs.org/dashboard/)
 3. [Import](https://readthedocs.org/dashboard/import/?__cf_chl_captcha_tk__=f51d0fd05a6dd27a26845c9bd923a6f42ecfded4-1588260812-0-AVHp7xZY-MfpUWYf-sWQgn7MpabCmi2Dzc_tn4_f3tGxMObBh87mGw19KwybY3HkO9EzmoByZ_vpqhjdGT6oOoXXPt714nvln3sxrf6vsoIa_Q8wQ0aHNgzPEhBiO7u0LyHFxtYsg8cbCFpUY-Y_HPZ-Th-S6BmRj6pZIZPh4ieiR6nrWAmQEqnhPeCl79jRC11MMwJ5Gao4xji5JEufhc98l4D-okayG_5A1B8W2kCEXPaENPFiBc113EpO3E70G03ibg25CfezRwD7jXAG5Sc86TZ_u35SRkn7e_IySD-yEkUec8NRFQRPH6uEhP8RPVXdjKzhFrD7D6s19Uevg8eDXqTCO-y8TjdSTQ_28xcDeBz_jMRyveeYFNp5QgGbXRox5WxdaiMFCGaufD4Aqfc)
 
-## 版本管理
+## 7.版本管理
 
 * [Version Doc](https://docs.readthedocs.io/en/stable/versions.html)
 
-## 资源
+## 8.资源
 
 * [Sphinx documentation](https://www.sphinx-doc.org/en/master/)
 * [RestructuredText primer](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html)
 * [An introduction to Sphinx and Read the Docs for technical writers](https://www.ericholscher.com/blog/2016/jul/1/sphinx-and-rtd-for-writers/)
 
-## config.py 模板：
+## 9.config.py 模板：
 
 ```python
 # -*- coding: utf-8 -*-
@@ -104,7 +126,7 @@ git push -u origin master
 #
 # This file does only contain a selection of the most common options. For a
 # full list see the documentation:
-# http://www.sphinx-doc.org/en/master/config
+# https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 # -- Path setup --------------------------------------------------------------
 
@@ -116,25 +138,17 @@ git push -u origin master
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-# -- Markdown setup --------------------------------------------------------------
-# 
-from recommonmark.parser import CommonMarkParser
-source_parsers = {
-    '.md': CommonMarkParser,
-}
-source_suffix = ['.rst', '.md']
-
 
 # -- Project information -----------------------------------------------------
 
-project = u'OpenCV'
-copyright = u'2018, Hunag Xinyuan'
-author = u'Hunag Xinyuan'
+project = 'OpenCV'
+copyright = '2018, Hunag Xinyuan'
+author = 'Hunag Xinyuan'
 
 # The short X.Y version
-version = u''
+version = '1.0'
 # The full version, including alpha/beta/rc tags
-release = u'1.0'
+release = '1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -147,8 +161,14 @@ release = u'1.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.mathjax',
+    'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
+    'sphinx.ext.todo',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.apidoc',
+    'sphinx.ext.extlinks',
+    'nbsphinx',
+    'sphinx_markdown_tables',
     'sphinx.ext.githubpages',
 ]
 
@@ -158,8 +178,8 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-#source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+# source_suffix = ['.rst', '.md']
+# source_suffix = '.rst'
 
 # The master toctree document.
 master_doc = 'index'
@@ -169,12 +189,14 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = u'zh_CN'
+language = 'zh_CN'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = [
+    '**.ipynb_checkpoints',
+]
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
@@ -185,7 +207,9 @@ pygments_style = None
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-# html_theme = 'alabaster'
+import sphinx_rtd_theme
+html_theme = 'sphinx_rtd_theme'
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -209,6 +233,30 @@ html_static_path = ['_static']
 # html_sidebars = {}
 
 
+# Markdown support
+import recommonmark
+from recommonmark.transform import AutoStructify
+from recommonmark.parser import CommonMarkParser
+source_parsers = {
+    # '.md': CommonMarkParser,
+    '.md': 'recommonmark.parser.CommonMarkParser',
+}
+source_suffix = ['.rst', '.md']
+
+
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+        # 'url_resolver': lambda url: github_doc_root + url,
+        'enable_math': False,
+        'enable_inline_math': False,
+    }, True)
+    app.add_transform(AutoStructify)
+
+
+# math support
+# TODO
+
+
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
@@ -219,10 +267,10 @@ htmlhelp_basename = 'OpenCVdoc'
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'opencv', u'OpenCV Documentation',
-     [author], 1)
-]
+# man_pages = [
+#     (master_doc, 'opencv', u'OpenCV Documentation',
+#     [author], 1)
+# ]
 
 
 # -- Options for Texinfo output ----------------------------------------------
@@ -230,11 +278,11 @@ man_pages = [
 # Grouping the document tree into Texinfo files. List of tuples
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
-texinfo_documents = [
-    (master_doc, 'OpenCV', u'OpenCV Documentation',
-     author, 'OpenCV', 'One line description of project.',
-     'Miscellaneous'),
-]
+# texinfo_documents = [
+#     (master_doc, 'OpenCV', u'OpenCV Documentation',
+#      author, 'OpenCV', 'One line description of project.',
+#      'Miscellaneous'),
+# ]
 
 
 # -- Options for Epub output -------------------------------------------------
@@ -254,29 +302,31 @@ texinfo_documents = [
 # A list of files that should not be packed into the epub file.
 # epub_exclude_files = ['search.html']
 
-import sphinx_rtd_theme
-html_theme = 'sphinx_rtd_theme'
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # -- Extension configuration -------------------------------------------------
 
+
 # -- Options for LaTeX output ------------------------------------------------
 
-latex_elements={# The paper size ('letterpaper' or 'a4paper').
-'papersize':'a4paper',# The font size ('10pt', '11pt' or '12pt').
-'pointsize':'12pt','classoptions':',oneside','babel':'',#必須
-'inputenc':'',#必須
-'utf8extra':'',#必須
-# Additional stuff for the LaTeX preamble.
-'preamble': r"""
-\usepackage{xeCJK}
-\usepackage{indentfirst}
-\setlength{\parindent}{2em}
-\setCJKmainfont{WenQuanYi Micro Hei}
-\setCJKmonofont[Scale=0.9]{WenQuanYi Micro Hei Mono}
-\setCJKfamilyfont{song}{WenQuanYi Micro Hei}
-\setCJKfamilyfont{sf}{WenQuanYi Micro Hei}
-\XeTeXlinebreaklocale "zh"
-\XeTeXlinebreakskip = 0pt plus 1pt
-"""}
+# latex_elements={
+#     # The paper size ('letterpaper' or 'a4paper').
+#     'papersize': 'a4paper', # The font size ('10pt', '11pt' or '12pt').
+#     'pointsize': '12pt',
+#     'classoptions': ',oneside',
+#     'babel': '',    #必須
+#     'inputenc': '', #必須
+#     'utf8extra': '',#必須
+#     # Additional stuff for the LaTeX preamble.
+#     'preamble': r"""
+#         \usepackage{xeCJK}
+#         \usepackage{indentfirst}
+#         \setlength{\parindent}{2em}
+#         \setCJKmainfont{WenQuanYi Micro Hei}
+#         \setCJKmonofont[Scale=0.9]{WenQuanYi Micro Hei Mono}
+#         \setCJKfamilyfont{song}{WenQuanYi Micro Hei}
+#         \setCJKfamilyfont{sf}{WenQuanYi Micro Hei}
+#         \XeTeXlinebreaklocale "zh"
+#         \XeTeXlinebreakskip = 0pt plus 1pt
+#     """
+# }
 ```
