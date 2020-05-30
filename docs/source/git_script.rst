@@ -1,9 +1,9 @@
-.. _header-n0:
+.. _header-n0git:
 
 Git
 ===
 
-.. _header-n3:
+.. _header-n3git:
 
 1.创建SSH Key
 -------------
@@ -12,7 +12,7 @@ Git
 
    $ ssh-keygen -t rsa -C "wangzhefengr@163.com"
 
-.. _header-n5:
+.. _header-n5git:
 
 2.安装Git
 ---------
@@ -22,12 +22,12 @@ Git
    $ sudo apt-get install git
    $ git --version
 
-.. _header-n7:
+.. _header-n7git:
 
 3.Git 配置
 ----------
 
-.. _header-n8:
+.. _header-n8git:
 
 3.1 配置Git
 ~~~~~~~~~~~
@@ -38,7 +38,7 @@ Git
    $ git config --global user.email "wangzhefengr@163.com"
    $ git config --global core.editor gedit
 
-.. _header-n10:
+.. _header-n10git:
 
 3.2 Git配置文件
 ~~~~~~~~~~~~~~~
@@ -60,7 +60,7 @@ or
    # 针对该仓库
    $ sudo gedit .git/config
 
-.. _header-n14:
+.. _header-n14git:
 
 3.3 检查Git配置信息
 ~~~~~~~~~~~~~~~~~~~
@@ -72,7 +72,7 @@ or
    $ git config user.email
    $ git config core.editor
 
-.. _header-n16:
+.. _header-n16git:
 
 4.获取帮助
 ----------
@@ -85,12 +85,12 @@ or
 
    $ git help config
 
-.. _header-n18:
+.. _header-n18git:
 
 5.Git工作流程
 -------------
 
-.. _header-n19:
+.. _header-n19git:
 
 5.1 创建Git仓库(2种)
 ~~~~~~~~~~~~~~~~~~~~
@@ -125,7 +125,7 @@ or
    $ git clone https://github.com/wangzhefeng/git_test.git
    $ git clone https://github.com/wangzhefeng/git_test.git git_test
 
-.. _header-n44:
+.. _header-n44git:
 
 5.2 添加版本库中的文件到暂存区
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -142,7 +142,7 @@ or
    # or
    $ git add path_name\*.txt
 
-.. _header-n46:
+.. _header-n46git:
 
 5.3 把暂存区的所有内容提交到当前分支
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -151,7 +151,7 @@ or
 
    $ git commit -m 'initial project version'
 
-.. _header-n48:
+.. _header-n48git:
 
 5.4 把一个已有的本地仓库和远程git库关联
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -160,7 +160,7 @@ or
 
    $ git remote add origin https://github.com/wangzhefeng/resp.git
 
-.. _header-n50:
+.. _header-n50git:
 
 5.5 把本地库的内容推送到远程(把当前分支推送到远程)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -169,7 +169,7 @@ or
 
    $ git push -u origin master
 
-.. _header-n53:
+.. _header-n53git:
 
 5.6 从远程分支拉取最新的版本到本地并合并
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -209,12 +209,12 @@ or
 
    $ git pull origin master
 
-.. _header-n71:
+.. _header-n71git:
 
 6.查看当前信息
 ~~~~~~~~~~~~~~
 
-.. _header-n72:
+.. _header-n72git:
 
 6.1 查看当前文件状态
 ^^^^^^^^^^^^^^^^^^^^
@@ -225,7 +225,7 @@ or
    $ git status -s
    $ git status --short
 
-.. _header-n74:
+.. _header-n74git:
 
 6.2 查看已暂存和未暂存的修改
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -236,7 +236,7 @@ or
    $ git diff --cached
    $ git diff --staged
 
-.. _header-n76:
+.. _header-n76git:
 
 6.3 查看工作区和版本库里最新版本的区别
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -245,12 +245,12 @@ or
 
    $ git diff HEAD --file.txt
 
-.. _header-n78:
+.. _header-n78git:
 
 7.移除文件(从暂存区域移除)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. _header-n79:
+.. _header-n79git:
 
 7.1 确定要从版本库中删除文件
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -266,7 +266,7 @@ or
 
    $ git add .
 
-.. _header-n83:
+.. _header-n83git:
 
 7.2 误删工作区文件，将版本库中的文件替换工作取得文件
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -275,12 +275,12 @@ or
 
    $ git checkout -- test.txt
 
-.. _header-n85:
+.. _header-n85git:
 
 8.版本回退
 ~~~~~~~~~~
 
-.. _header-n86:
+.. _header-n86git:
 
 8.1 提交日志
 ^^^^^^^^^^^^
@@ -289,7 +289,7 @@ or
 
    $ git log --pretty=oneline
 
-.. _header-n88:
+.. _header-n88git:
 
 8.2 查看命令历史, 记录每次命令
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -298,12 +298,12 @@ or
 
    $ git reflog
 
-.. _header-n90:
+.. _header-n90git:
 
 8.3 版本回退
 ^^^^^^^^^^^^
 
-.. _header-n91:
+.. _header-n91git:
 
 8.3.1 回退到上一个版本(HEAD：当前版本)
 ''''''''''''''''''''''''''''''''''''''
@@ -315,7 +315,7 @@ or
    $ git reset --hard HEAD~10
    $ git reset --hard commit_id
 
-.. _header-n93:
+.. _header-n93git:
 
 8.3.2 前进到某个版本
 ^^^^^^^^^^^^^^^^^^^^
@@ -325,12 +325,12 @@ or
    $ git reflog
    $ git reset --hard commit_id
 
-.. _header-n95:
+.. _header-n95git:
 
 9.撤销修改
 ~~~~~~~~~~
 
-.. _header-n97:
+.. _header-n97git:
 
 9.1 丢弃工作区的修改，
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -343,7 +343,7 @@ or
 
    $ git checkout -- file.txt
 
-.. _header-n104:
+.. _header-n104git:
 
 9.2 把暂存区的修改回退到工作区(丢弃暂存区的修改)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -353,17 +353,17 @@ or
    $ git reset HEAD file.txt
    $ git checkout --file.txt
 
-.. _header-n107:
+.. _header-n107git:
 
 10.分支管理
 ~~~~~~~~~~~
 
-.. _header-n108:
+.. _header-n108git:
 
 10.1 创建与合并分支
 ^^^^^^^^^^^^^^^^^^^
 
-.. _header-n109:
+.. _header-n109git:
 
 10.1.1 创建tinker分支，然后切换到tinker分支
 '''''''''''''''''''''''''''''''''''''''''''
@@ -377,7 +377,7 @@ or
    $ git branch tinker
    $ git checkout tinker
 
-.. _header-n113:
+.. _header-n113git:
 
 10.1.2 查看当前分支
 ^^^^^^^^^^^^^^^^^^^
@@ -386,7 +386,7 @@ or
 
    $ git branch
 
-.. _header-n115:
+.. _header-n115git:
 
 10.1.3 切换回master分支
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -395,7 +395,7 @@ or
 
    git checkout master
 
-.. _header-n117:
+.. _header-n117git:
 
 10.1.4 将tinker分支的工作成果合并到master分支上
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -405,7 +405,7 @@ or
    $ git checkout master
    $ git merge tinker
 
-.. _header-n119:
+.. _header-n119git:
 
 10.1.5 删除tinker分支
 ^^^^^^^^^^^^^^^^^^^^^

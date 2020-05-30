@@ -1,4 +1,4 @@
-.. _header-n0:
+.. _header-n0sphinx:
 
 Sphinx Doc
 ==========
@@ -18,7 +18,7 @@ features for writing technical documentation including:
 -  A vibrant ecosystem of first and third-party
    `extensions <https://www.sphinx-doc.org/en/master/usage/extensions/index.html#builtin-sphinx-extensions>`__
 
-.. _header-n15:
+.. _header-n15sphinx:
 
 1.安装环境
 ----------
@@ -37,7 +37,7 @@ features for writing technical documentation including:
    $ pip3 install sphinx-autobuild 
    $ pip3 install sphinx_rtd_theme
 
-.. _header-n20:
+.. _header-n20sphinx:
 
 2.创建文档
 ----------
@@ -58,12 +58,12 @@ features for writing technical documentation including:
 
    $ sphinx quickstart
 
-.. _header-n25:
+.. _header-n25sphinx:
 
 3.修改配置文件
 --------------
 
-.. _header-n26:
+.. _header-n26sphinx:
 
 3.1 更改主题
 ~~~~~~~~~~~~
@@ -77,7 +77,7 @@ features for writing technical documentation including:
    html_theme = "sphinx_rtd_theme"
    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-.. _header-n28:
+.. _header-n28sphinx:
 
 3.2 支持 markdown 语法
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -106,7 +106,7 @@ features for writing technical documentation including:
 
    source_suffix = ['.rst', '.md']
 
-.. _header-n33:
+.. _header-n33sphinx:
 
 4.编译文档:
 -----------
@@ -116,7 +116,7 @@ features for writing technical documentation including:
    cd ./project/docs/
    make html
 
-.. _header-n35:
+.. _header-n35sphinx:
 
 5.GitHub 代码托管:
 ------------------
@@ -131,7 +131,7 @@ features for writing technical documentation including:
    git remote add origin git:/github.git
    git push -u origin master
 
-.. _header-n37:
+.. _header-n37sphinx:
 
 6.绑定 Read the Docs:
 ---------------------
@@ -143,14 +143,14 @@ features for writing technical documentation including:
 
 3. `Import <https://readthedocs.org/dashboard/import/?__cf_chl_captcha_tk__=f51d0fd05a6dd27a26845c9bd923a6f42ecfded4-1588260812-0-AVHp7xZY-MfpUWYf-sWQgn7MpabCmi2Dzc_tn4_f3tGxMObBh87mGw19KwybY3HkO9EzmoByZ_vpqhjdGT6oOoXXPt714nvln3sxrf6vsoIa_Q8wQ0aHNgzPEhBiO7u0LyHFxtYsg8cbCFpUY-Y_HPZ-Th-S6BmRj6pZIZPh4ieiR6nrWAmQEqnhPeCl79jRC11MMwJ5Gao4xji5JEufhc98l4D-okayG_5A1B8W2kCEXPaENPFiBc113EpO3E70G03ibg25CfezRwD7jXAG5Sc86TZ_u35SRkn7e_IySD-yEkUec8NRFQRPH6uEhP8RPVXdjKzhFrD7D6s19Uevg8eDXqTCO-y8TjdSTQ_28xcDeBz_jMRyveeYFNp5QgGbXRox5WxdaiMFCGaufD4Aqfc>`__
 
-.. _header-n45:
+.. _header-n45sphinx:
 
 7.版本管理
 ----------
 
 -  `Version Doc <https://docs.readthedocs.io/en/stable/versions.html>`__
 
-.. _header-n49:
+.. _header-n49sphinx:
 
 8.资源
 ------
@@ -163,7 +163,7 @@ features for writing technical documentation including:
 -  `An introduction to Sphinx and Read the Docs for technical
    writers <https://www.ericholscher.com/blog/2016/jul/1/sphinx-and-rtd-for-writers/>`__
 
-.. _header-n57:
+.. _header-n57sphinx:
 
 9.config.py 模板：
 ------------------

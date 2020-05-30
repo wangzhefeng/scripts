@@ -1,14 +1,14 @@
-.. _header-n0:
+.. _header-n0linux:
 
 Linux
 =====
 
-.. _header-n3:
+.. _header-n3linux:
 
 1. Linux Help
 -------------
 
-.. _header-n4:
+.. _header-n4linux:
 
 1.1 命令帮助
 ~~~~~~~~~~~~
@@ -51,7 +51,7 @@ Linux
 
    $ whereis python
 
-.. _header-n29:
+.. _header-n29linux:
 
 1.2 Bash快捷键
 ~~~~~~~~~~~~~~
@@ -63,7 +63,7 @@ Linux
    Ctl-H   backspace,删除光标前边的字符
    Ctl-R   匹配最相近的一个文件，然后输出
 
-.. _header-n32:
+.. _header-n32linux:
 
 2.Linux基础
 -----------
@@ -84,12 +84,12 @@ Linux
 
 -  系统管理及IPC资源管理
 
-.. _header-n50:
+.. _header-n50linux:
 
 2.1 文件及目录管理
 ~~~~~~~~~~~~~~~~~~
 
-.. _header-n51:
+.. _header-n51linux:
 
 2.1.1 创建目录和文件\ ``mkdir``,\ ``touch``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -109,7 +109,7 @@ Linux
    # or 
    $ >fileName
 
-.. _header-n56:
+.. _header-n56linux:
 
 2.1.2 删除目录和文件\ ``rm``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -123,7 +123,7 @@ Linux
    $ rm *log
    $ find ./ -name "*log" -exec rm {} \;
 
-.. _header-n58:
+.. _header-n58linux:
 
 2.1.3 移动目录及文件
 ^^^^^^^^^^^^^^^^^^^^
@@ -132,7 +132,7 @@ Linux
 
    $ mv sourec_dir dest_dir
 
-.. _header-n60:
+.. _header-n60linux:
 
 2.1.4 复制目录及文件
 ^^^^^^^^^^^^^^^^^^^^
@@ -142,7 +142,7 @@ Linux
    # 复制目录
    $ cp -r source_dir dest_dir
 
-.. _header-n62:
+.. _header-n62linux:
 
 2.1.5 目录切换
 ^^^^^^^^^^^^^^
@@ -170,7 +170,7 @@ Linux
    # 更改当前工作路径为"path"
    $ cd path
 
-.. _header-n64:
+.. _header-n64linux:
 
 2.1.6 列出目录项
 ^^^^^^^^^^^^^^^^
@@ -193,7 +193,7 @@ Linux
    # or
    $ lcn
 
-.. _header-n66:
+.. _header-n66linux:
 
 2.1.7 查找目录及文件\ ``$find``,\ ``locate``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -224,7 +224,7 @@ Linux
    # 更新索引库
    $ updatedb
 
-.. _header-n74:
+.. _header-n74linux:
 
 2.1.8 查看文件内容
 ^^^^^^^^^^^^^^^^^^
@@ -259,7 +259,7 @@ Linux
    # 动态显示文本最新信息
    $ tail -f crawler.log
 
-.. _header-n88:
+.. _header-n88linux:
 
 给文件创建别名
 ^^^^^^^^^^^^^^
@@ -272,7 +272,7 @@ Linux
 
    $ ln
 
-.. _header-n96:
+.. _header-n96linux:
 
 在.bashrc(/home/wangzhefeng/.bashrc)中设置命令别名
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -282,7 +282,7 @@ Linux
    alias ll='ls - lrt'
    alias lm=ls -al|more
 
-.. _header-n99:
+.. _header-n99linux:
 
 3.环境变量
 ----------
@@ -293,7 +293,7 @@ Linux
 
       -  临时的：使用\ ``export``\ 命令声明即可，变量在关闭shell时失效；
 
-.. _header-n109:
+.. _header-n109linux:
 
 Linux环境变量设置
 ~~~~~~~~~~~~~~~~~
@@ -337,7 +337,7 @@ Linux环境变量设置
 
    $ export var=value
 
-.. _header-n126:
+.. _header-n126linux:
 
 Linux环境变量查看
 ~~~~~~~~~~~~~~~~~
@@ -357,7 +357,7 @@ Linux环境变量查看
    # 查看所有本地定义的环境变量
    $ set
 
-.. _header-n130:
+.. _header-n130linux:
 
 Linux环境变量删除
 ~~~~~~~~~~~~~~~~~
@@ -368,7 +368,7 @@ Linux环境变量删除
    $ unset VAR
    $ env|grep VAR
 
-.. _header-n133:
+.. _header-n133linux:
 
 Linux常用环境变量
 ~~~~~~~~~~~~~~~~~
@@ -409,7 +409,7 @@ Linux常用环境变量
 
    -  基本提示符，对于root用户是#，对于普通用户是$
 
-.. _header-n183:
+.. _header-n183linux:
 
 2.2 文本处理
 ~~~~~~~~~~~~
@@ -424,7 +424,7 @@ Linux常用环境变量
 
 -  ``uniq``\ 消除重复行
 
-.. _header-n196:
+.. _header-n196linux:
 
 2.3 磁盘管理
 ~~~~~~~~~~~~
@@ -437,7 +437,7 @@ Linux常用环境变量
 
    -  解包/解压缩
 
-.. _header-n208:
+.. _header-n208linux:
 
 2.3.1 查看磁盘空间
 ^^^^^^^^^^^^^^^^^^
@@ -479,7 +479,7 @@ or
 
    du -sh `ls` [| sort]
 
-.. _header-n228:
+.. _header-n228linux:
 
 2.3.2 
 ^^^^^^
@@ -528,7 +528,7 @@ or
 | demo.tar.7z  | LINUX,\ ``tar程序``\ 打包,\ ``7zip程序``\ 压缩的文件   |
 +--------------+--------------------------------------------------------+
 
-.. _header-n284:
+.. _header-n284linux:
 
 2.3.2.1 打包/压缩
 '''''''''''''''''
@@ -559,7 +559,7 @@ or
 
    gzip demo.txt
 
-.. _header-n308:
+.. _header-n308linux:
 
 2.3.2.2 解包/解压缩
 '''''''''''''''''''
@@ -646,7 +646,7 @@ or
    $ 7zip demo.tar.7z
    $ tar -xvf demo.tar
 
-.. _header-n351:
+.. _header-n351linux:
 
 运行代码时常用信息查看命令
 --------------------------
@@ -748,24 +748,24 @@ or
 
       -  ``>>`` 表示 append 写入
 
-.. _header-n426:
+.. _header-n426linux:
 
 3.工具
 ------
 
-.. _header-n427:
+.. _header-n427linux:
 
 3.1 crontab定时任务
 ~~~~~~~~~~~~~~~~~~~
 
-.. _header-n428:
+.. _header-n428linux:
 
 3.1.1 命令格式
 ^^^^^^^^^^^^^^
 
 -  ``$crontab [-u user] file crontab [-u user] [-e|-l|-r|-i]``
 
-.. _header-n432:
+.. _header-n432linux:
 
 3.1.2 crontab文件格式
 ^^^^^^^^^^^^^^^^^^^^^
@@ -806,7 +806,7 @@ or
 
    -  ``crontab -r``
 
-.. _header-n477:
+.. _header-n477linux:
 
 3.2 examples
 ~~~~~~~~~~~~
@@ -859,7 +859,7 @@ or
 
     -  ``$0 23-7 * * * /etc/init.d/smb restart``
 
-.. _header-n540:
+.. _header-n540linux:
 
 3.3 系统级任务调度和用户级任务调度
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -870,7 +870,7 @@ or
 
    -  ``$crontab -uroot -e``
 
-.. _header-n551:
+.. _header-n551linux:
 
 3.4 log位置
 ~~~~~~~~~~~
@@ -879,7 +879,7 @@ or
 
 -  ``$tail -f /var/log/cron``
 
-.. _header-n558:
+.. _header-n558linux:
 
 3.5 特殊字符
 ~~~~~~~~~~~~
@@ -890,14 +890,14 @@ or
 
    -  ``%%``
 
-.. _header-n567:
+.. _header-n567linux:
 
 3.6 重启cron
 ~~~~~~~~~~~~
 
 -  ``$service cron restart``
 
-.. _header-n571:
+.. _header-n571linux:
 
 3.7 ubuntu启动，停止，重启cron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

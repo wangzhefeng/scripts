@@ -1,14 +1,14 @@
-.. _header-n0:
+.. _header-n0docker:
 
 Docker
 ======
 
-.. _header-n3:
+.. _header-n3docker:
 
 Docker Hello World
 ------------------
 
-.. _header-n4:
+.. _header-n4docker:
 
 在容器内运行一个应用程序
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -17,7 +17,7 @@ Docker Hello World
 
    docker run ubuntu:15.10 /bin/echo "Hello world"
 
-.. _header-n6:
+.. _header-n6docker:
 
 运行交互式的容器
 ~~~~~~~~~~~~~~~~
@@ -30,7 +30,7 @@ Docker Hello World
    # 退出容器
    exit # or Ctrl+D
 
-.. _header-n8:
+.. _header-n8docker:
 
 启动容器（后台模式）
 ~~~~~~~~~~~~~~~~~~~~
@@ -39,7 +39,7 @@ Docker Hello World
 
    docker run -d ubuntu:15.10 /bin/sh -c "while true; do echo hello world; sleep 1; done"
 
-.. _header-n10:
+.. _header-n10docker:
 
 停止容器
 ~~~~~~~~
@@ -50,12 +50,12 @@ Docker Hello World
    docker ps
    docker stop amazing_cori
 
-.. _header-n12:
+.. _header-n12docker:
 
 Docker 容器
 -----------
 
-.. _header-n13:
+.. _header-n13docker:
 
 Docker 客户端
 ~~~~~~~~~~~~~
@@ -65,7 +65,7 @@ Docker 客户端
    docker
    docker <command> --help
 
-.. _header-n15:
+.. _header-n15docker:
 
 Docker 容器使用
 ~~~~~~~~~~~~~~~
@@ -88,19 +88,19 @@ Docker 容器使用
 
    docker ps -a
 
-.. _header-n22:
+.. _header-n22docker:
 
 Docker 安装 Ubuntu
 ------------------
 
-.. _header-n23:
+.. _header-n23docker:
 
 1.查看可用的 Ubuntu 版本
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Ubuntu 镜像库地址 <https://hub.docker.com/_/ubuntu?tab=tags&page=1>`__
 
-.. _header-n25:
+.. _header-n25docker:
 
 2.拉取最新版的 Ubuntu 镜像
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -110,7 +110,7 @@ Docker 安装 Ubuntu
    docker pull ubuntu
    docker pull ubuntu:latest
 
-.. _header-n27:
+.. _header-n27docker:
 
 3.查看本地镜像
 ~~~~~~~~~~~~~~
@@ -119,7 +119,7 @@ Docker 安装 Ubuntu
 
    docker images
 
-.. _header-n29:
+.. _header-n29docker:
 
 4.运行容器，并且可以通过 ``exec`` 命令进入 ubuntu 容器
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -128,7 +128,7 @@ Docker 安装 Ubuntu
 
    docker run -itd --name ubuntu-test ubuntu
 
-.. _header-n31:
+.. _header-n31docker:
 
 5.安装成功
 ~~~~~~~~~~
@@ -137,7 +137,7 @@ Docker 安装 Ubuntu
 
    docker ps
 
-.. _header-n33:
+.. _header-n33docker:
 
 Docker 安装 Python
 ------------------

@@ -1,14 +1,14 @@
-.. _header-n0:
+.. _header-n0rst:
 
 reStructuredText
 ================
 
-.. _header-n4:
+.. _header-n4rst:
 
 基本语法
 --------
 
-.. _header-n7:
+.. _header-n7rst:
 
 资源
 ----

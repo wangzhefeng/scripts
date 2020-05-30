@@ -1,14 +1,14 @@
-.. _header-n0:
+.. _header-n0sbt:
 
 sbt
 ===
 
-.. _header-n4:
+.. _header-n4sbt:
 
 test
 ----
 
-.. _header-n6:
+.. _header-n6sbt:
 
 test
 ----

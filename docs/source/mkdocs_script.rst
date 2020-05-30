@@ -1,4 +1,4 @@
-.. _header-n0:
+.. _header-n0mkdocs:
 
 MkDocs Doc
 ==========
@@ -12,7 +12,7 @@ simplicity. It has many great features including:
 
 -  Writing documentation with Markdown
 
-.. _header-n11:
+.. _header-n11mkdocs:
 
 安装环境
 --------
@@ -21,7 +21,7 @@ simplicity. It has many great features including:
 
    $ pip3 install mkdocs
 
-.. _header-n13:
+.. _header-n13mkdocs:
 
 创建文档
 --------
@@ -30,7 +30,7 @@ simplicity. It has many great features including:
 
    $ mkdocs new project_doc
 
-.. _header-n15:
+.. _header-n15mkdocs:
 
 编译文档:
 ---------
@@ -43,7 +43,7 @@ simplicity. It has many great features including:
 
 -  http://127.0.0.1:8000/
 
-.. _header-n21:
+.. _header-n21mkdocs:
 
 GitHub 代码托管:
 ----------------
@@ -56,7 +56,7 @@ GitHub 代码托管:
    $ git remote add origin git:/github.git
    $ git push -u origin master
 
-.. _header-n23:
+.. _header-n23mkdocs:
 
 绑定 Read the Docs:
 -------------------
@@ -68,14 +68,14 @@ docs. <https://docs.readthedocs.io/en/stable/intro/import-guide.html>`__
 
 2. `Import <https://readthedocs.org/dashboard/import/?__cf_chl_captcha_tk__=f51d0fd05a6dd27a26845c9bd923a6f42ecfded4-1588260812-0-AVHp7xZY-MfpUWYf-sWQgn7MpabCmi2Dzc_tn4_f3tGxMObBh87mGw19KwybY3HkO9EzmoByZ_vpqhjdGT6oOoXXPt714nvln3sxrf6vsoIa_Q8wQ0aHNgzPEhBiO7u0LyHFxtYsg8cbCFpUY-Y_HPZ-Th-S6BmRj6pZIZPh4ieiR6nrWAmQEqnhPeCl79jRC11MMwJ5Gao4xji5JEufhc98l4D-okayG_5A1B8W2kCEXPaENPFiBc113EpO3E70G03ibg25CfezRwD7jXAG5Sc86TZ_u35SRkn7e_IySD-yEkUec8NRFQRPH6uEhP8RPVXdjKzhFrD7D6s19Uevg8eDXqTCO-y8TjdSTQ_28xcDeBz_jMRyveeYFNp5QgGbXRox5WxdaiMFCGaufD4Aqfc>`__
 
-.. _header-n30:
+.. _header-n30mkdocs:
 
 版本管理
 --------
 
 -  `Version Doc <https://docs.readthedocs.io/en/stable/versions.html>`__
 
-.. _header-n34:
+.. _header-n34mkdocs:
 
 资源
 ----
