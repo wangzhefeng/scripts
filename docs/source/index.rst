@@ -10,10 +10,12 @@ Welcome to scripts's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   git_script
+   mkdocs_script
    docker_script
+   git_script
    linux_script
    maven_script
    shell_script
    sphinx_script
+   reStructuredText
    stb_script
