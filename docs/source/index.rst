@@ -19,3 +19,4 @@ Welcome to scripts's documentation!
    sphinx_script
    reStructuredText
    stb_script
+   interview
