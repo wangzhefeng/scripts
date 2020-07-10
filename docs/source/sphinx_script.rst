@@ -379,3 +379,311 @@ features for writing technical documentation including:
    #         \XeTeXlinebreakskip = 0pt plus 1pt
    #     """
    # }
+
+
+10.reStructuredText Markup 语法
+------------------------------------
+
+:reStructured: https://docutils.sourceforge.io/rst.html
+:A ReStructuredText Primer: https://docutils.sourceforge.io/docs/user/rst/quickstart.html
+:Quick reStructuredText: https://docutils.sourceforge.io/docs/user/rst/quickref.html
+:reStructuredText Markup Specification: https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#literal-blocks
+:Docutils: https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html
+
+10.1 段落
+~~~~~~~~~~~~~~~
+
+   Paragraphs contain text and may contain inline markup:
+   *emphasis*, **strong emphasis**, `interpreted text`, ``inline
+   literals``, standalone hyperlinks (http://www.python.org),
+   external hyperlinks (Python_), internal cross-references
+   (example_), footnote references ([1]_), citation references
+   ([CIT2002]_), substitution references (|example|), and _`inline internal targets`.
+
+   Paragraphs are separated by blank lines and are left-aligned.
+
+.. note::
+
+   知识点:
+
+      - *emphasis*
+
+      - **strong emphasis**
+
+      - `interpreted text`
+
+      - ``inline literals``
+
+      - standalone hyperlinks (http://www.python.org)
+
+      - external hyperlinks(Python_)
+
+      - internal cross-references(example_)
+
+      - footnote references([1]_)
+
+      - citation references([CIT2002]_)
+
+      - substitution references(|example|)
+
+      - _`inline internal targets`
+
+
+10.2 Lists
+~~~~~~~~~~~~~~~
+
+   1.Bullet lists
+
+      - This is a bullet list.
+
+      - Bullets can be "*", "+", or "-".
+
+   2.Enumerated lists
+
+      1. This is an enumerated list.
+
+      2. Enumerators may be arabic numbers, letters, or roman
+         numerals.
+
+   3.Definition lists:
+
+      what
+         Definition lists associate a term with a definition.
+
+      how
+         The term is a one-line phrase, and the definition is one
+         or more paragraphs or body elements, indented relative to
+         the term.
+
+   4.Field lists:
+
+      :what: Field lists map field names to field bodies, like
+            database records.  They are often part of an extension
+            syntax.
+
+      :how: The field marker is a colon, the field name, and a
+            colon.
+
+            The field body may contain one or more body elements,
+            indented relative to the field marker.
+
+   5.Option lists, for listing command-line options:
+
+      -a            command-line option "a"
+      -b file       options can have arguments
+                  and long descriptions
+      --long        options can be long also
+      --input=file  long options can also have
+                  arguments
+      /V            DOS/VMS-style options too
+
+   .. note:: 
+
+      There must be at least two spaces between the option and the description.
+
+
+10.3 Literal blocks:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Literal blocks are either indented or line-prefix-quoted blocks,
+   and indicated with a double-colon ("::") at the end of the
+   preceding paragraph (right here -->)::
+
+      if literal_block:
+         text = 'is left as-is'
+         spaces_and_linebreaks = 'are preserved'
+         markup_processing = None
+
+10.4 Block quotes:
+~~~~~~~~~~~~~~~~~~
+
+   Block quotes consist of indented body elements:
+
+      This theory, that is mine, is mine.
+
+      -- Anne Elk (Miss)
+
+10.5 Doctest blocks:
+~~~~~~~~~~~~~~~~~~~~~~~
+
+   >>> print 'Python-specific usage examples; begun with ">>>"'
+   Python-specific usage examples; begun with ">>>"
+   >>> print '(cut and pasted from interactive Python sessions)'
+   (cut and pasted from interactive Python sessions)
+
+
+10.6 Two syntaxes for tables:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   1.Grid tables; complete, but complex and verbose:
+
+   +------------------------+------------+----------+
+   | Header row, column 1   | Header 2   | Header 3 |
+   +========================+============+==========+
+   | body row 1, column 1   | column 2   | column 3 |
+   +------------------------+------------+----------+
+   | body row 2             | Cells may span        |
+   +------------------------+-----------------------+
+
+   2.Simple tables; easy and compact, but limited:
+
+   ====================  ==========  ==========
+   Header row, column 1  Header 2    Header 3
+   ====================  ==========  ==========
+   body row 1, column 1  column 2    column 3
+   body row 2            Cells may span columns
+   ====================  ======================
+
+10.7 Explicit markup blocks 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+all begin with an explicit block marker, two periods and a space:
+
+   - Footnotes:
+
+      .. [1] A footnote contains body elements, consistently
+         indented by at least 3 spaces.
+   
+   - Citations:
+
+      .. [CIT2002] Just like a footnote, except the label is
+         textual.
+   
+   - Hyperlink targets:
+
+      .. _Python: http://www.python.org
+
+      .. _example:
+
+      The "_example" target above points to this paragraph.
+   
+   - Directives:
+
+      ``.. image:: mylogo.png``
+   
+   - Substitution definitions:
+
+      ``.. |symbol here| image:: symbol.png``
+   
+   - Comments:
+
+      .. Comments begin with two dots and a space.  Anything may
+         follow, except for the syntax of footnotes/citations,
+         hyperlink targets, directives, or substitution definitions.
+
+
+10.8 Quoted Literal Blocks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+   John Doe wrote::
+
+   >> Great idea!
+   >
+   > Why didn't I think of that?
+
+   You just did!  ;-)
+
+Syntax diagram:
+
+10.9 Line Blocks
+~~~~~~~~~~~~~~~~~~
+
+Doctree elements: line_block, line. (New in Docutils 0.3.5.)
+
+Line blocks are useful for address blocks, verse (poetry, song lyrics), and unadorned lists, where the structure of lines is significant. Line blocks are groups of lines beginning with vertical bar ("|") prefixes. Each vertical bar prefix indicates a new line, so line breaks are preserved. Initial indents are also significant, resulting in a nested structure. Inline markup is supported. Continuation lines are wrapped portions of long lines; they begin with a space in place of the vertical bar. The left edge of a continuation line must be indented, but need not be aligned with the left edge of the text above it. A line block ends with a blank line.
+
+This example illustrates continuation lines:
+
+   | Lend us a couple of bob till Thursday.
+   | I'm absolutely skint.
+   | But I'm expecting a postal order and I can pay you back
+   as soon as it comes.
+   | Love, Ewan.
+
+This example illustrates the nesting of line blocks, indicated by the initial indentation of new lines:
+
+   Take it away, Eric the Orchestra Leader!
+
+      | A one, two, a one two three four
+      |
+      | Half a bee, philosophically,
+      |     must, *ipso facto*, half not be.
+      | But half the bee has got to be,
+      |     *vis a vis* its entity.  D'you see?
+      |
+      | But can a bee be said to be
+      |     or not to be an entire bee,
+      |         when half the bee is not a bee,
+      |             due to some ancient injury?
+      |
+      | Singing...
+
+Syntax diagram:
+
++------+-----------------------+
+| "| " | line                  |
++------| continuation line     |
+       +-----------------------+
+
+
+
+
+10.10 Block Quotes
+~~~~~~~~~~~~~~~~~~~~
+
+Doctree element: block_quote, attribution.
+
+A text block that is indented relative to the preceding text, without preceding markup indicating it to be a literal block or other content, is a block quote. All markup processing (for body elements and inline markup) continues within the block quote:
+
+   This is an ordinary paragraph, introducing a block quote.
+
+      "It is my business to know things.  That is my trade."
+
+      -- Sherlock Holmes
+
+A block quote may end with an attribution: a text block beginning with "--", "---", or a true em-dash, flush left within the block quote. If the attribution consists of multiple lines, the left edges of the second and subsequent lines must align.
+
+Multiple block quotes may occur consecutively if terminated with attributions.
+
+   Unindented paragraph.
+
+      Block quote 1.
+
+                                                         -—Attribution 1
+
+      Block quote 2.
+
+Empty comments may be used to explicitly terminate preceding constructs that would otherwise consume a block quote:
+
+   * List item.
+
+   ..
+
+      Block quote 3.
+   
+Empty comments may also be used to separate block quotes:
+
+      Block quote 4.
+
+   ..
+
+      Block quote 5.
+
+Blank lines are required before and after a block quote, but these blank lines are not included as part of the block quote.
+
+Syntax diagram:
+
+
++------------------------------+
+| (current level of            |
+| indentation)                 |
++------------------------------+
+   +---------------------------+
+   | block quote               |
+   | (body elements)+          |
+   |                           |
+   | -- attribution text       |
+   |    (optional)             |
+   +---------------------------+
+
