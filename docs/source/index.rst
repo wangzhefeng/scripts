@@ -13,10 +13,24 @@ Welcome to scripts's documentation!
    mkdocs_script
    docker_script
    git_script
-   linux_script
    maven_script
-   shell_script
    sphinx_script
    reStructuredText
    stb_script
    interview
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Linux:
+   
+   Linux/Linux_content
+   Linux/Linux_introduction
+   Linux/Linux_OS_operation
+   Linux/Linux_OS_manage
+   Linux/Linux_shell_script
+   Linux/Linux_text_operation
+   Linux/Linux_server_manage
+   Linux/Linux_script
+   
+

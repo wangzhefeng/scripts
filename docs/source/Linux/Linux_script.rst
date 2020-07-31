@@ -1,7 +1,7 @@
 .. _header-n0linux:
 
-Linux
-=====
+Linux Script
+=================
 
 .. _header-n3linux:
 
@@ -648,7 +648,7 @@ or
 
 .. _header-n351linux:
 
-运行代码时常用信息查看命令
+4.运行代码时常用信息查看命令
 --------------------------
 
 -  ``cat``: 显示文本的内容
@@ -750,24 +750,24 @@ or
 
 .. _header-n426linux:
 
-3.工具
+5.工具
 ------
 
 .. _header-n427linux:
 
-3.1 crontab定时任务
+5.1 crontab定时任务
 ~~~~~~~~~~~~~~~~~~~
 
 .. _header-n428linux:
 
-3.1.1 命令格式
+5.1.1 命令格式
 ^^^^^^^^^^^^^^
 
 -  ``$crontab [-u user] file crontab [-u user] [-e|-l|-r|-i]``
 
 .. _header-n432linux:
 
-3.1.2 crontab文件格式
+5.1.2 crontab文件格式
 ^^^^^^^^^^^^^^^^^^^^^
 
 -  ``分 时 日 月 星期 要运行的命令``
@@ -808,7 +808,7 @@ or
 
 .. _header-n477linux:
 
-3.2 examples
+5.2 examples
 ~~~~~~~~~~~~
 
 1.  每分钟执行一次myCommand
@@ -861,7 +861,7 @@ or
 
 .. _header-n540linux:
 
-3.3 系统级任务调度和用户级任务调度
+5.3 系统级任务调度和用户级任务调度
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  可以将用户级任务调度放到系统级任务调度来完成（不建议这么做），但是反过来却不行
@@ -872,7 +872,7 @@ or
 
 .. _header-n551linux:
 
-3.4 log位置
+5.4 log位置
 ~~~~~~~~~~~
 
 -  ``/etc/init.d/crond restart``
@@ -881,7 +881,7 @@ or
 
 .. _header-n558linux:
 
-3.5 特殊字符
+5.5 特殊字符
 ~~~~~~~~~~~~
 
 -  ``%``
@@ -892,14 +892,14 @@ or
 
 .. _header-n567linux:
 
-3.6 重启cron
+5.6 重启cron
 ~~~~~~~~~~~~
 
 -  ``$service cron restart``
 
 .. _header-n571linux:
 
-3.7 ubuntu启动，停止，重启cron
+5.7 ubuntu启动，停止，重启cron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  ``$sudo /etc/init.d/cron start``

@@ -1,7 +1,7 @@
 .. _header-n0shell:
 
-Shell
-=====
+Shell Script
+===============
 
 .. _header-n3shell:
 
