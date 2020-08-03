@@ -41,11 +41,11 @@ Linux 背景介绍
 ~~~~~~~~~~~~~~~~~~
 
 
-    - https://www.kernel.org/
+    - Linus Torvalds 开发的 Linux 内核: https://www.kernel.org/
 
     - 内核版本分为三个部分
 
-    - 主版本好、此版本号、末版本号
+    - 主版本号、此版本号、末版本号
 
     - 次版本号是奇数为开发版本、偶数为稳定版本
 
@@ -81,87 +81,84 @@ Linux 背景介绍
 4. 在虚拟机中安装 Linux 系统
 ----------------------------
 
-略
+    - http://isoredirect.centos.org/centos/7/isos/x86_64/
 
 
 5. 第一次启动 Linux
 -----------------------
 
-5.1 进入 root 用户
+5.1 图形页面
 ~~~~~~~~~~~~~~~~~~~~
 
-- root 用户账号、密码：
+    - root 用户账号、密码：
 
-    - `root`
-
-    - `123456`
-
-- 普通用户账号、密码：
-
-    - wangzf
-
-    - Tinker711235813
-
-
-5.2 图形页面
-~~~~~~~~~~~~~~~~~~~~
-
-5.3 终端页面
-~~~~~~~~~~~~~~~~~~~~
-
-- 进入终端页面：
-
-    .. code-block:: shell
-
-        # in Shell
-
-        init 3
-
-- 登录用户：
-
-    - root 用户
-
-        - ``root`` 
+        - ``root``
 
         - ``123456``
 
-
-    - 普通用户：
+    - 普通用户账号、密码：
 
         - ``wangzf``
 
         - ``Tinker711235813``
 
-- 退出当前登录用户(切换用户)：
-
-    .. code-block:: shell
-
-        # in Shell
-
-        exit
-
-- 关机
-
-    .. code-block:: shell
-
-        # in Shell
-
-        init 0
-
-
-5.4 终端的使用
+5.2 终端页面
 ~~~~~~~~~~~~~~~~~~~~
 
-- 终端(Shell)
+    - 进入终端页面：
 
-    - 图形终端
+        .. code-block:: shell
 
-    - 命令行终端
+            # in Shell
 
-    - 远程终端(SSH、VNC)
+            init 3
+
+    - 登录用户：
+
+        - root 用户
+
+            - ``root`` 
+
+            - ``123456``
 
 
-5.5 常见目录介绍
+        - 普通用户：
+
+            - ``wangzf``
+
+            - ``Tinker711235813``
+
+    - 退出当前登录用户(切换用户)：
+
+        .. code-block:: shell
+
+            # in Shell
+
+            exit
+
+    - 关机
+
+        .. code-block:: shell
+
+            # in Shell
+
+            init 0
+
+
+5.3 终端的使用
+~~~~~~~~~~~~~~~~~~~~
+
+    - 终端(Shell)
+
+        - 图形终端
+
+        - 命令行终端
+
+            - 服务器维护
+
+        - 远程终端(SSH、VNC)
+
+5.4 常见目录介绍
 ~~~~~~~~~~~~~~~~~~~~
 
     - ``/`` 根目录
@@ -178,12 +175,10 @@ Linux 背景介绍
 
     - ``/usr/bin`` ``/usr/sbin`` 系统预装的其他命令
 
-使用示例：
+    使用示例：
 
-.. code-block:: shell
+    .. code-block:: shell
 
-    ls /
-    ls /root
-    ls /bin
-
-
+        ls /
+        ls /root
+        ls /bin

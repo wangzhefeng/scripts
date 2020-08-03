@@ -1,7 +1,7 @@
 .. _header-n0sphinx:
 
 Sphinx Doc
-==========
+================
 
 Sphinx is a powerful documentation generator that has many great
 features for writing technical documentation including:
@@ -621,10 +621,10 @@ This example illustrates the nesting of line blocks, indicated by the initial in
 
 Syntax diagram:
 
-+------+-----------------------+
-| "| " | line                  |
-+------| continuation line     |
-       +-----------------------+
+.. +------+-----------------------+
+.. | "| " | line                  |
+.. +------| continuation line     |
+..        +-----------------------+
 
 
 

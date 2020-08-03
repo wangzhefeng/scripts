@@ -8,7 +8,7 @@ Welcome to scripts's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Contents
 
    mkdocs_script
    docker_script
@@ -22,7 +22,7 @@ Welcome to scripts's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Linux:
+   :caption: Linux
    
    Linux/Linux_content
    Linux/Linux_introduction

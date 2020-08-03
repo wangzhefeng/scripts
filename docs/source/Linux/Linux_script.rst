@@ -3,58 +3,11 @@
 Linux Script
 =================
 
-.. _header-n3linux:
-
-1. Linux Help
--------------
-
-.. _header-n4linux:
-
-1.1 命令帮助
-~~~~~~~~~~~~
-
--  根据命令部分关键字搜索
-
-.. code:: shell
-
-   $ man date
-   $ man -k date
-
--  命令简要说明
-
-.. code:: shell
-
-   $ whatis ls
-   $ whatis -w "mkd*"
-
--  命令详细说明
-
-.. code:: shell
-
-   $ info ls
-
--  命令参数及使用方法
-
-.. code:: shell
-
-   $ man ls
-
--  查看程序的binary文件所在路径
-
-.. code:: shell
-
-   $ which python
-
--  查看程序的搜索路径
-
-.. code:: shell
-
-   $ whereis python
-
 .. _header-n29linux:
 
-1.2 Bash快捷键
-~~~~~~~~~~~~~~
+1.Bash快捷键
+--------------------
+
 
 .. code:: 
 
@@ -649,7 +602,7 @@ or
 .. _header-n351linux:
 
 4.运行代码时常用信息查看命令
---------------------------
+----------------------------------------
 
 -  ``cat``: 显示文本的内容
 
