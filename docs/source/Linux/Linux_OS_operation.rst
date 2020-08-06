@@ -588,17 +588,55 @@ Linux 系统操作
         $ cd /home/user_test
 
 
-
-
-
-
-
-
-
 5.2 打包压缩和解压缩
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+- 最早的 Linux 备份介质是磁带，使用的命令是 ``tar``
 
+- 可以打包后的磁带文件进行压缩存储，压缩的命令是 ``gzip`` 和 ``bzip2``
+
+- 经常使用的扩展名是 ``.tar.gz``、``.tar.bz2``、``.tgz``
+
+- ``tar`` 打包命令
+
+    - ``c`` 打包
+
+    - ``x`` 解包
+
+    - ``f`` 指定操作类型为文件
+
+
+- 打包
+
+    - 打包
+        
+        .. code-block:: shell
+        
+            $ tar cf /new_path/new_file.tar /path_to_be_tar
+    
+    - 打包并压缩
+
+        .. code-block:: shell
+
+            # 压缩更快 (.tgz == .tar.gz)
+            $ tar czf /new_path/new_file.tar.gz /path_to_be_tar_zip
+
+            # 更高的压缩比例 (.tbz2 == .tar.bz2)
+            $ tar cjf /new_path/new_file.tar.bz2 /path_to_be_tar_zip
+    
+    - 解包并解压缩
+
+        .. code-block:: shell
+        
+            $ tar xf /new_path/new_file.tar -C /path_to_save
+            $ tar zxf /new_path/new_file.tar.gz -C /path_to_save 
+            $ tar jxf /new_path/new_file.tar.bz2 -C /path_to_save
+
+- 压缩、解压缩
+
+    - gzip new_file.tar
+
+    - bzip2 new_file.tar
 
 
 
@@ -609,7 +647,31 @@ Linux 系统操作
 6.1 文件内容查看
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+- 文本查看命令
 
+    - ``cat`` 文本内容显示到终端
+
+        - ``cat filename``
+
+    - ``head`` 查看文件开头
+
+        - ``head -n filename``
+
+    - ``tail`` 查看文件结尾
+
+        - ``tail -3 filename``
+
+        - 常用参数 ``-f`` 文件内容更新后，显示信息同步更新
+            
+            - ``tail -f filename``
+
+    - ``wc`` 统计文件内容信息(文件长度)
+
+        - ``wc -l filename``
+    
+    - ``less``
+
+    - ``more``
 
 
 6.2 强大的文本编辑器 :guilabel:`vi`
