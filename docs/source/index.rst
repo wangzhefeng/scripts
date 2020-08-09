@@ -10,14 +10,14 @@ Welcome to scripts's documentation!
    :maxdepth: 2
    :caption: Contents
 
+   mac_vscode
+   sphinx_script
+   reStructuredText
    mkdocs_script
    docker_script
    git_script
    maven_script
-   sphinx_script
-   reStructuredText
    stb_script
-   interview
 
 
 .. toctree::
