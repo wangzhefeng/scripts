@@ -32,5 +32,6 @@ Welcome to scripts's documentation!
    Linux/Linux_text_operation
    Linux/Linux_server_manage
    Linux/Linux_script
+   Linux/Linux_kernel
    
 
