@@ -16,8 +16,6 @@ Welcome to scripts's documentation!
    mkdocs_script
    docker_script
    git_script
-   maven_script
-   stb_script
 
 
 .. toctree::
