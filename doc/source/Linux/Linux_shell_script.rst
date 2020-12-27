@@ -1,9 +1,6 @@
-.. _header-n0shell:
 
-Shell Script
+Linux Shell
 ===============
-
-.. _header-n3shell:
 
 1.什么是Shell
 -------------
@@ -32,15 +29,11 @@ Shell Script
    $ ls -l /bin/bash
    $ ls -l /bin/zsh
 
-.. _header-n23shell:
-
 2.搭建运行环境
 --------------
 
    在一个Linux操作系统中，有一个运行有Bash的命令行在等待键入命令，这个命令行可以是图形界面下的
    ``终端(Terminal)``\ ，例如: Ubuntu 下的 Terminator.
-
-.. _header-n26shell:
 
 2.1 搭建Bash运行环境
 ~~~~~~~~~~~~~~~~~~~~
@@ -60,9 +53,7 @@ Shell Script
    $ bash
 
    # 确认命令行中运行的是Bash
-   $ echo $SHELL 
-
-.. _header-n30shell:
+   $ echo $SHELL
 
 2.2 运行Shell脚本
 ~~~~~~~~~~~~~~~~~
@@ -107,12 +98,8 @@ Shell Script
 
    $ . ./shell/helloworld.sh
 
-.. _header-n57shell:
-
 3.Shell基本语法
 ---------------
-
-.. _header-n58shell:
 
 3.1 Shell 的 Hello, World 程序
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

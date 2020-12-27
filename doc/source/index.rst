@@ -33,3 +33,18 @@ Welcome to scripts's documentation!
    Linux/Linux_kernel
    
 
+.. toctree::
+   :maxdepth: 2
+   :caption: macOS
+
+   macOS/macOS_content
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Vim
+
+   Vim/Vim
+   Vim/Vim-vimrc
+   Vim/Vim-vimtutor
+   Vim/Vim-practical

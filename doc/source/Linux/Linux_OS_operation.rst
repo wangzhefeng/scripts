@@ -2,9 +2,6 @@
 Linux 系统操作
 ========================
 
-
-
-
 .. important:: **Linux 中一切皆文件**
 
     - 文件查看
@@ -167,8 +164,12 @@ Linux 系统操作
         $ whereis python
 
 
-2. 文件查看--``pwd``、``cd``、``ls``
+2. 文件查看
 ---------------------------------------------------
+
+    - ``pwd``
+    - ``cd``
+    - ``ls``
 
 2.1 ``pwd`` 显示当前的目录名称
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -259,8 +260,13 @@ Linux 系统操作
 
         - ``d`` 第一个 ``d`` 代表目录
 
-3. 目录文件操作--创建、删除、复制、移动
+3. 目录文件操作
 ---------------------------------------------------
+
+    - 创建
+    - 删除
+    - 复制
+    - 移动
 
 3.1 创建目录
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -677,17 +683,17 @@ Linux 系统操作
     - ``more``
 
 
-6.2 强大的文本编辑器 :guilabel:`vi`
+6.2 强大的文本编辑器 Vi/Vim
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-多模式文本编辑器:
+6.2.1 多模式文本编辑器
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
     - 四种模式
 
         - 正常模式(Normal-mode)
 
-        - 插入模式(Insert-model)
+        - 插入模式(Insert-mode)
 
         - 命令模式(Command-mode)
 
@@ -701,8 +707,7 @@ Linux 系统操作
             $ vim
             $ vim file_name
 
-
-正常模式:
+6.2.2 正常模式
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
     - 进入正常模式
@@ -712,19 +717,14 @@ Linux 系统操作
     - 光标移动
 
         - :guilabel:`h`: 左
-
         - :guilabel:`j`: 上
-
         - :guilabel:`k`: 下
-
         - :guilabel:`l`: 右
 
     - 复制文本
 
         - :guilabel:`yy`: 复制当前整行
-
         - :guilabel:`[n]yy`: 复制当前行下面的多行
-
         - :guilabel:`y$`: 复制光标位置到当前行的结尾
 
     - 粘贴文本
@@ -734,15 +734,12 @@ Linux 系统操作
     - 剪切文本
 
         - :guilabel:`dd`: 剪切光标所在的行
-
         - :guilabel:`[n]dd`: 剪切当前行下面的多行
-
         - :guilabel:`d$`: 剪切光标位置到当前行的结尾
     
     - 撤销
 
         - :guilabel:`u`: 撤销
-
         - :guilabel:`Ctrl + r`: 重做(撤销撤销)
     
     - 单个字符删除
@@ -756,17 +753,13 @@ Linux 系统操作
     - 移动到指定的行
 
         - :guilabel:`[n]G`: 移动到第 n 行
-
         - :guilabel:`g`: 移动到第一行
-
         - :guilabel:`G`: 移动到最后一行
-
         - :guilabel:`^`: 移动到当前行的开头
-
         - :guilabel:`$`: 移动到当前行的结尾
 
 
-插入模式:
+6.2.3 插入模式
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
     - :guilabel:`I`: 进入插入模式，光标处于插入之前行的开头
@@ -781,89 +774,70 @@ Linux 系统操作
 
     - :guilabel:`o`: 进入插入模式，光标处于插入之前的行的下一行
 
-可视模式:
+6.2.4 可视模式
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    - 进入可视模式
+    - :guilabel:`v`: 字符可视模式
 
-        - :guilabel:`v`: 字符可视模式
+    - :guilabel:`V`: 行可视模式
 
-        - :guilabel:`V`: 行可视模式
+    - :guilabel:`Ctrl + V`: 块可视模式
 
-        - :guilabel:`Ctrl + V`: 块可视模式
+        - :guilabel:`d`: 多行删除
+        - :guilabel:`I` + 连续两次按 :guilabel:`Esc`: 多行插入
 
-            - :guilabel:`d`: 多行删除
-
-            - :guilabel:`I` + 连续两次按 :guilabel:`Esc`: 多行插入
-
-命令模式:
+6.2.5 命令模式
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    - 进入命令模式、末行模式
+    - (1)进入命令模式、末行模式
 
         - :guilabel:`:`
+    
+    - (2)保存文件
 
-    - 保存
+        - 保存
+            - :guilabel:`:w /zfwang/filename.sh`: 保存到指定文件
+            - :guilabel:`:w`: 保存到当前文件
+        - 退出
+            - :guilabel:`:q`
+        - 保存退出
+            - :guilabel:`:wq` 
+        - 不保存退出
+            - :guilabel:`:q!` 
 
-        - :guilabel:`:w /zfwang/filename.sh`: 保存到指定文件
+    - (3)执行 Linux 命令
 
-        - :guilabel:`:w`: 保存到当前文件
-
-    - 退出
-
-        - :guilabel:`:q`
-
-    - 保存退出
-
-        - :guilabel:`:wq` 
-
-    - 不保存退出
-
-        - :guilabel:`:q!` 
-
-    - 执行 Linux 命令
-
-        - :guilabel:`:![command]`
-        
+        - :guilabel:`:![command]`        
         - :guilabel:`:!ifconfig`: 查看ip地址
     
-    - 查找字符
+    - (4)查看、查找字符
 
-        - :guilabel:`/[str]`
-
-        - :guilabel:`/[str]` + :guilabel:`n` 查找到的字符下移光标
-
-        - :guilabel:`/[str]` + :guilabel:`N`: 查找到的字符上移光标
-
-    - 替换查找到的字符
-
-        - :guilabel:`:s/old_str/new_str`: 只替换光标所在行的目标字符
-
-        - :guilabel:`:%s/old_str/new_str`: 替换整个文件的第一个目标字符
-
-        - :guilabel:`:%s/old_str/new_str/g`: 替换整个文件的目标字符
-
-        - :guilabel:`:[n],[m]s/old_str/new_str/g`: 替换第n行到第m行的目标字符
-    
-    - 显示/不显示行号
-
-        - :guilabel:`:set nu`
-
-        - :guilabel:`:set nonu`
-    
-    - 去掉高亮显示
-
-        - :guilabel:`:set nohlsearch` 
-    
-    - 设置 vim 的配置文件
-
-        .. code-block:: shell
+        - 查找字符
+            - :guilabel:`/[str]`
+            - :guilabel:`/[str]` + :guilabel:`n` 查找到的字符下移光标
+            - :guilabel:`/[str]` + :guilabel:`N`: 查找到的字符上移光标
+        - 替换查找到的字符
+            - :guilabel:`:s/old_str/new_str`: 只替换光标所在行的目标字符
+            - :guilabel:`:%s/old_str/new_str`: 替换整个文件的第一个目标字符
+            - :guilabel:`:%s/old_str/new_str/g`: 替换整个文件的目标字符
+            - :guilabel:`:[n],[m]s/old_str/new_str/g`: 替换第n行到第m行的目标字符
         
-            # 打开 /etc/vimrc
-            $ vim /etc/vimrc
+    - (5)vim 编辑器配置项设置
 
-            # /etc/vimrc 文件修改
-            set nu
+        - 显示/不显示行号
+            - :guilabel:`:set nu`
+            - :guilabel:`:set nonu`
+        - 去掉高亮显示
+            - :guilabel:`:set nohlsearch` 
+        - 设置 vim 的配置文件
+            
+            .. code-block:: shell
+            
+                # 打开 /etc/vimrc
+                $ vim /etc/vimrc
+
+                # /etc/vimrc 文件修改
+                set nu
 
 
 7.其他命令
