@@ -2,7 +2,7 @@
 Vim 文本编辑器
 ====================
 
-.. image:: ../../images/Vimlogo.png
+.. image:: ../image/Vimlogo.png
 
 
 1. Vim 详细介绍

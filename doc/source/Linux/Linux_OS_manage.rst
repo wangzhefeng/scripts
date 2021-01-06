@@ -99,7 +99,7 @@ Linux 系统管理
 
     - 修改参数的显示组合
         
-        - .. image:: ../../images/network.png
+        - .. image:: ../image/network.png
     
     - 使用示例
 
