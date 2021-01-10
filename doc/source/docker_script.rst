@@ -1,6 +1,6 @@
 
 Docker
-==================
+=======================================
 
    - 学前准备
 
@@ -16,7 +16,7 @@ Docker
          - 镜像命令
          - 容器命令
          - 操作命令
-      
+
       - Docker 镜像
       - 容器数据卷
       - DockerFile
@@ -55,172 +55,525 @@ Docker
 1.2 Docker 概述
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1.2.1 Docker Platform
+1.2.1 Docker 能做什么
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+   - Fast, consistent delivery of your applications
+   - Responsive deployment and scaling
+   - Running more workloads on the same hardware
 
-1.2.2 Docker Engine
+1.2.2 Docker Platform
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   - Docker 提供了在完全隔离的环境中(容器)中打包和运行应用程序的功能，隔离和安全性使得可以在给定服务器上同时运行多个容器.
+
+   - Docker 的容器是很轻巧的，因为他们不需要虚拟机管理程序的额外负载，而是直接在服务器主机的内核中运行.
+
+   - Docker 提供了工具和一个平台来管理容器的生命周期:
+
+      - 使用容器来开发应用及其支持的组件
+      - 容器成为分发和测试应用程序的单元
+      - 将应用程序作为容器或协调服务部署到生产环境中，生产环境可以是本地数据中心或云服务器
+
+1.2.3 Docker Engine
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    .. image:: image/engine-components-flow.png
 
-   - Docker 是一个客户端-服务器应用程序，具有以下组件:
+   Docker 是一个客户端-服务器应用程序，具有以下组件:
       
-      - docker daemon prcess
+   - **Server**
       
-         - ``dockerd`` 命令
-      
-      - REST API 
-      
-      - command line interface(CLI) client
+      - Docker daemon prcess
          
+         - 一个长期运行的程序
+         - ``dockerd`` 命令
+         - Docker daemon 创建并管理 Docker object:
+
+            - networs
+            - containers
+            - images
+            - data volumes
+   
+   - **REST API** 
+
+      - 提供了外部程序与 Docker daemon 进行通信、交互的接口
+   
+   - **Client**
+      
+      - Docker CLI
+
+         -  CLI 通过脚本或 CLI 命令，使用 Docker REST API 控制 Docker daemon，或与 Docker daemon 进行交互
          - ``docker`` 命令
 
-1.2.3 Docker 术语
+1.2.4 Docker 架构
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   .. image:: image/architecture.png
-   
-   - Image
+   Docker 使用客户端-服务器架构:
 
-      - Docker 镜像就好比一个模板，可以通过这个模板来创建容器服务
+      .. image:: image/architecture.png
+
+   Docker 客户端与 Docker 守护进程进行交互，其中：
+      
+      - Docker 守护进程负责完成构建、运行、分发 Docker 容器的工作.
+      - Docker 客户端和守护进程可以运行在同一系统上，也可以使用 Docker 客户端连接到远程的 Docker 守护进程.
+      - Docker 客户端与守护进程也可以使用 REST API 通过 UNIX sockets 或者其他网络接口进行交互.
+
+   1. Docker Client(客户端)--``docker``
+
+      -  Docker client 是 Docker 用户与 Docker 交互的主要途径，当运行命令 ``docker run``，
+         Docker client 会发送命令到 ``docked`` ，``docker`` 命令使用的是 Docker API.
+      -  Docker client 可以与多个 Docker daemon 进行通信.
+      -  Docker client 命令:
+
+         - ``docker build``
+         - ``docker pull``
+         - ``docker run``
+
+   2. DOCKER_HOST
+   
+      - 2.1 Docker daemon(守护进程)--``docked``
+
+         -  Docker daemon 负责监听 Docker API 的请求，并管理 Docker Object，
+            如 images, containers, networks, volumes
+         -  Docker daemon 也可以与其他 daemon 进行通信来管理 Docker Service
+
+      - 2.2 Docker Object(对象)
+
+         .. note:: 
+            
+            - 当使用 Docker 时，用户会创建和使用 images、containers、networks、volumes、plugins 和其他对象.
+
+         - 2.2.1 Image
+
+            - Docker 镜像就是一个用于创建 Docker 容器的只读模板
+               
+               - 镜像 -> run -> 容器(提供服务器)
+            
+            -  一个镜像通常基于另一个镜像，只是多了一些额外的自定义配置，比如: 可以构建一个基于 ``ubuntu`` 的镜像，
+               在该镜像的基础上安装 Apache web 服务和自己的应用程序，还要其他的具体配置项
+            
+            - 用户可以创建自己的镜像，也可以使用其他人创建好的已经在 Docker 仓库中发布的镜像
+
+               -  要构建自己的镜像，需要先创建一个 Dockerfile，以定义创建镜像并运行它所需的步骤，
+                  Dockerfile 中的每条指令都会在镜像中创建一个层，当更改 Dockerfile 并重新构建镜像时，
+                  只需要重新构建那些已经更改的层即可
+
+            - 通过镜像可以创建多个容器，最终服务运行或者项目运行就是在容器中
          
-         - 镜像->run->容器(提供服务器)
-
-      - 通过镜像可以创建多个容器，最终服务运行或者项目运行就是在容器中。
-   
-   - Container
-   
-      - Docker 利用容器技术，独立运行一个或者一组应用，通过镜像来创建、启动、停止、删除、基本命令
-      - 可以把容器理解为就是一个简易的 Linux 系统
-   
-   - Repository
-   
-      - 仓库就是存放镜像的地方
-      - 仓库分为公有仓库、私有仓库
-
-         - 公有仓库:
-
-            - 国内: Docker Hub
-            - 国外: 阿里云
+         - 2.2.2 Container
          
-         - 私有仓库
+            - 一个容器就是一个可运行的镜像实例，可以通过 Docker API 或者 CLI 来创建、启动、停止、移动、删除容器
+            - 一个容器可以连接到一个或多个网络，并将存储空间赋予它，甚至可以基于它的当前状态创建一个新的镜像
+            - 默认情况下，容器与其他容器及其主机之间的隔离度相对较高，可以控制容器的网络、存储空间、或其他基础子系统与其他容器或主机的隔离程度
+            - 容器由镜像、以及在创建或启动时为该镜像提供的任何配置选项定义，删除容器后，未存储在永久性存储空间中的状态将消失
+            - Docker 利用容器技术，独立运行一个或者一组应用
+            - 可以把容器理解为就是一个简易的 Linux 系统
+
+   3. Docker Registry(仓库)
+      
+      - Docker registry 存储 Docker images
+      - Docker registry 分为公有仓库、私有仓库
+
+            - 公有仓库:
+
+               - 国外: Docker Hub
+               - 国内: 阿里云
+            
+            - 私有仓库
+
+      -  可以使用 ``docker pull`` 或者 ``docker run`` 命令从配置的仓库中拉取镜像，
+         使用 ``docker push`` 命令会将镜像推送到配置的仓库
+
+   4. Docker Services
+
+      -  Docker Services 允许将 Containers 扩展在多个 Docker daemon 上，这是一个拥有多个 managers 和 workers 的 swarm，
+         每一个 swarm 的成员都是一个 Docker daemon，并且所有的 daemon 可以通过 Docker API 进行通信
+      - Docker Service 允许你定义所需的状态，比如，在任何给定时间必须可用的服务副本的数量
+      - Docker Service 是一个单独的应用程序
+      - Docker Engine 在 Docker 1.12 及更高版本中开始支持集群模式
+
+1.2.5 ``docker run`` 命令示例
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   - 运行一个 ubuntu 容器
+
+   .. code-block:: shell
+   
+      $ docker run -i -t ubuntu /bin/bash
+
+      - 1.如果 ubuntu 在本地没有镜像，Docker 会从已配置的仓库中拉取，等同于: ``docker pull ubuntu``
+      - 2.Docker 会创建一个新容器，等同于: ``docker container create``
+      - 3.Docker 将一个读写文件系统分配给容器，作为其最后一层。这允许运行中的容器在其本地文件系统中创建或修改文件和目录
+      - 4.Docker 创建了一个网络接口，将容器连接到默认网络，因为您未指定任何网络选项。这包括为容器分配 IP 地址。默认情况下，容器可以使用主机的网络连接连接到外部网络
+      - 5.Docker 启动容器并执行 ``/bin/bash``。因为容器是交互式运行的，并且已附加到您的终端（由于 -i 和 -t 标志），所以您可以在输出记录到终端时使用键盘提供输入
+      - 6.当键入 ``exit`` 以终止 ``/bin/bash`` 命令时，容器将停止但不会被删除。您可以重新启动或删除它
+
+1.2.6 Docker 底层技术
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Docker用Go编程语言编写，并利用 Linux 内核的多个功能来交付其功能.
+
+      - Namespaces
+
+         -  Docker 使用一种称为 namespaces 的技术提供了称为 container 的隔离工作空间，
+            当运行一个 container 时，Docker 会为这个 container 创建一系列 namespaces
+         - Docker Engine 在 Linux 上使用以下名称空间：
+
+            - pid namespaces: 进程隔离，PID: Process ID
+            - net namespaces: 管理网络接口，NET: Networking
+            - ipc namespaces: 管理获取 IPC 资源的能力，IPC: InterProcess Communication
+            - mnt namespaces: 管理文件系统节点，MNT: Mount
+            - uts namespaces: 隔离内核和版本识别，UTS: Unix Timesharing System
+
+      - Control groups
+
+         - Linux上的Docker引擎还依赖于另一种称为控制组 （cgroups）的技术。cgroup将应用程序限制为一组特定的资源。控制组允许Docker Engine将可用的硬件资源共享给容器，并有选择地实施限制和约束。例如，您可以限制特定容器可用的内存.
+
+      - Union file systems
+
+         - 联合文件系统或UnionFS是通过创建图层进行操作的文件系统，使其非常轻便且快速。Docker Engine使用UnionFS为容器提供构建模块。Docker Engine可以使用多个UnionFS变体，包括AUFS，btrfs，vfs和DeviceMapper.
+      
+      - Container format
+
+         - Docker Engine将名称空间，控制组和UnionFS组合到一个称为容器格式的包装器中。默认容器格式为libcontainer。将来，Docker可以通过与BSD Jails或Solaris Zones等技术集成来支持其他容器格式.
 
 2.Docker 安装
 ----------------------------------------------
 
-2.1 环境准备
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-   - 1.Linux 基础
-   - 2.CentOS 7
-   - 3.使用 Xshell 连接远程服务器进行操作
-
-2.2 环境查看
+2.1 环境查看
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   .. code-block:: shell
+   - Linux
 
-      # 系统内核
-      uname -r
+      .. code-block:: shell
 
-      # 系统配置
-      cat /etc/os-release
+         # 系统内核
+         $ uname -a
+
+         # 系统配置
+         $ cat /etc/os-release
+
+   - macOS
+
+      .. code-block:: shell
+
+         $ uname -a
 
 2.3 Dcoker 安装
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- 安装目录: https://docs.docker.com/get-docker/
+   - 安装目录: https://docs.docker.com/get-docker/
 
-   - macOS: https://docs.docker.com/docker-for-mac/install/
-   - Linux: https://docs.docker.com/engine/install/
+      - macOS: https://docs.docker.com/docker-for-mac/install/
+      - Linux: https://docs.docker.com/engine/install/
 
 2.3.1 macOS
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1. 安装 Docker Desktop
+
+   - 安装内容
+
+      - Docker Engine
+      - Docker CLI client
+      - Docker Compose
+      - Notary
+      - Kubernetes
+      - Credential Helper
+   
+   - https://docs.docker.com/docker-for-mac/install/
+   - https://hub.docker.com/editions/community/docker-ce-desktop-mac/
+
+
+2. 卸载 Docker Desktops
+
+   - https://docs.docker.com/docker-for-mac/install/
 
 2.3.2 Ubuntu
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. 删除旧版本
+   1. 删除旧版本
+
+      .. code-block:: shell
+
+         $ sudo apt-get remove docker docker-engine docker.io containerd runc
+
+   2. 设置存储库
+
+      .. code-block:: shell
+
+         # 1.更新apt软件包索引并安装软件包以允许apt通过HTTPS使用存储库
+         $ sudo apt-get update
+         $ sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+         
+         # 2.添加Docker的官方GPG密钥
+         $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+         $ sudo apt-key fingerprint 0EBFCD88
+         
+         # 3.设置稳定的存储库
+         $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+   3. 安装 Docker Engine
+
+      .. code-block:: shell
+
+         # 1.更新apt软件包索引
+         $ sudo apt-get update
+         
+         # 2.安装最新版本的Docker Engine和容器化的容器，或转到下一步以安装特定版本
+         $ sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+         # 3.查看可用的仓库版本(如果想安装特定版本的Docker Engine)
+         $ apt-cache madison docker-ce
+         $ sudo apt-get install \
+            docker-ce=<VERSION_STRING> \
+            docker-ce-cli=<VERSION_STRING> \
+            containerd.io
+
+   4. 运行 hello-world
+
+      .. code-block:: shell
+
+         # 启动 Docker
+         $ systemctl start docker
+         $ docker version
+         
+         # 运行 hello-world
+         $ docker run --help
+         $ sudo docker run hello-world
+
+         # 查看下载的 image
+         $ docker images
+
+   5. 升级 Docker Engine
+
+      .. code-block:: shell
+
+         # 按照安装说明进行
+         $ sudo apt-get update
+
+   6. 卸载 Docker Engine
+
+      - 卸载 Docker Engine, CLI, Containerd packages
+
+         .. code-block:: shell
+
+            $ sudo apt-get purge docker-ce docker-ce-cli containerd.io
+         
+      - 删除 Images, containers, volumes
+
+         .. code-block:: shell
+
+            $ sudo rm -rf /var/lib/docker
+
+   .. note:: 
+
+      customized configuration files 需要手动删除
+
+2.3.3 Windows
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2.4 Docker Desktop 使用入门
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+0.查看 Docker 版本
 
    .. code-block:: shell
 
-      $ sudo apt-get remove docker docker-engine docker.io containerd runc
-
-2. 设置存储库
-
-   .. code-block:: shell
-
-      # 1.更新apt软件包索引并安装软件包以允许apt通过HTTPS使用存储库
-      $ sudo apt-get update
-      $ sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
-      
-      # 2.添加Docker的官方GPG密钥
-      $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-      $ sudo apt-key fingerprint 0EBFCD88
-      
-      # 3.设置稳定的存储库
-      $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-
-3. 安装 Docker Engine
-
-   .. code-block:: shell
-
-      # 1.更新apt软件包索引
-      $ sudo apt-get update
-      
-      # 2.安装最新版本的Docker Engine和容器化的容器，或转到下一步以安装特定版本
-      $ sudo apt-get install docker-ce docker-ce-cli containerd.io
-
-      # 3.查看可用的仓库版本(如果想安装特定版本的Docker Engine)
-      $ apt-cache madison docker-ce
-      $ sudo apt-get install \
-         docker-ce=<VERSION_STRING> \
-         docker-ce-cli=<VERSION_STRING> \
-         containerd.io
-
-4. 运行 hello-world
-
-   .. code-block:: shell
-
-      # 启动 Docker
-      $ systemctl start docker
       $ docker version
-      
-      # 运行 hello-world
-      $ docker run --help
-      $ sudo docker run hello-world
 
-      # 查看下载的 image
-      $ docker images
-
-5. 升级 Docker Engine
+1.运行 hello-word 容器
 
    .. code-block:: shell
 
-      # 按照安装说明进行
-      $ sudo apt-get update
+      $ docker run -d -p 80:80 docker/getting-started
+      # or
+      $ docker run -dp 80:80 docker/getting-started
 
-6. 卸载 Docker Engine
+   - ``-d``: 以 detached 模式(后台运行)运行容器
+   - ``-p 80:80``: 将主机的 80 端口映射到容器的 80 端口
+   - ``docker/getting-started``: 可用的镜像
 
-   - 卸载 Docker Engine, CLI, Containerd packages
+2.构建 App 容器、镜像
 
-      .. code-block:: shell
+   2.1 下载 App
 
-         $ sudo apt-get purge docker-ce docker-ce-cli containerd.io
+      - https://github.com/docker/getting-started/tree/master/app
+
+   2.2 构建 App 的容器镜像
+
+      - (1)在 package.json 所在目录下创建 ``Dockerfile`` 文件，内容如下
+
+         .. code-block:: shell
+
+            FROM node:12-alpine
+            WORKDIR /app
+            COPY . .
+            RUN yarn install --production
+            CMD ["node", "src/index.js"]
+
+      - (2)构建容器镜像
+
+         .. code-block:: shell
+
+            $ docker build -t getting-started .
+
+         - ``-t``: 为镜像打一个可读性好的标签
+         - ``.``: Docker 在当前目录下寻找 ``Dockerfile`` 文件
+
+   2.3 启动 App 容器
+
+      - (1) 启动 App 容器
+
+         .. code-block:: shell
+
+            $ docker run -dp 3000:3000 getting-started
+         
+      - (2)查看 App
+
+         - http://localhost:3000/
+
+   2.4 更新 App
+
+      - (1)更改 App 源代码
+      - (2)重新构建更新后的镜像
+
+         .. code-block:: shell
+
+            $ docker build -t getting-started .
       
-   - 删除 Images, containers, volumes
+      - (3)停止旧容器
 
-      .. code-block:: shell
+         - 命令行模式:
 
-         $ sudo rm -rf /var/lib/docker
+         .. code-block:: shell
 
-.. note:: 
+            # 查看正在运行的容器 ID
+            $ docker ps
+            
+            # Swap out <the-container-id> with the ID from docker ps
+            $ docker stop <the-container-id>
+            $ docker stop -f <the-container-id>
 
-   customized configuration files 需要手动删除
+         - Docker Dashboard 模式
+
+      - (3)删除旧容器
+
+         - 命令行模式
+
+         .. code-block:: shell
+
+            $ docker rm <the-container-id>
+            $ docker rm -f <the-container-id> 
+         
+         - Docker Dashboard 模式
+
+      - (4)开启新的容器
+
+         .. code-block:: shell
+
+            $ docker run -dp 3000:3000 getting-started
+
+      - (5)查看 App
+
+         - http://localhost:3000/
+
+3.分享 App
+
+   3.1 创建一个 Repo
+
+      - (1) `Docker Hub <https://hub.docker.com/>`_ 
+
+      - (2) ``Create a Repository``
+         
+         .. image:: ./image/docker_repo.png
+
+   3.2 Push 镜像
+
+      - (1)查看镜像
+
+         .. code-block:: shell
+
+            $ docker image ls
+
+      - (2)登录到 Docker Hub
+
+         .. code-block:: shell
+
+            $ docker login -u zfwang
+
+      - (3)为 ``getting-started`` 镜像创建一个新标签
+
+         .. code-block:: shell
+
+            $ docker tag getting-started zfwang/getting-started
+
+      - (4)Push 镜像
+
+         .. code-block:: shell
+
+            $ docker push zfwang/getting-started
+
+   3.3 在一个新的实例中运行镜像
+
+      - (1)`Play with Docker <https://labs.play-with-docker.com/>`_ 
+      - (2)登录 Docker Hub 账号
+      - (3)``+ ADD NEW INSTANCE``
+      - (4)运行容器
+
+         .. code-block:: shell
+
+            $ docker run -dp 3000:3000 YOUR-USER-NAME/getting-started
+
+4.
+
+
+
 
 3.Docker 命令
 ------------------------------------------------
+
+   - docker version
+   - docker run
+   - docker image
+   - docker container
+
+3.1 docker version
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   .. code-block:: shell
+
+      $ docker version
+      $ docker -f args
+      $ docker --kubeconfig args
+
+3.2 docker build
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+3.3 docker run
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+3.3 docker image
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+3.4 docker container
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+3.5 docker attach
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
 
 
 
@@ -229,72 +582,96 @@ Docker
 
 
 
+5.容器数据卷
+------------------------------------------------
 
 
 
+6.DockerFile
+------------------------------------------------
 
 
 
+7.Docker 网络原理
+------------------------------------------------
 
 
 
-4.Docker 安装环境
+8.Docker Compose
+------------------------------------------------
+
+
+
+9.Docker Swarm
+------------------------------------------------
+
+
+
+10.CI/CD jenkins
+------------------------------------------------
+
+
+
+11.IDEA 整合 Docker
+------------------------------------------------
+
+
+
+12.Docker 安装环境
 ---------------------------------------------------
 
-4.1 Docker 安装 Ubuntu
+12.1 Docker 安装 Ubuntu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-4.1.1 查看可用的 Ubuntu 版本
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   1.查看可用的 Ubuntu 版本
 
-   - `Ubuntu 镜像库地址 <https://hub.docker.com/_/ubuntu?tab=tags&page=1>`__
+      - `Ubuntu 镜像库地址 <https://hub.docker.com/_/ubuntu?tab=tags&page=1>`__
 
-4.1.2 拉取最新版的 Ubuntu 镜像
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   2.拉取最新版的 Ubuntu 镜像
 
-   .. code:: shell
+      .. code:: shell
 
-      docker pull ubuntu
-      docker pull ubuntu:latest
+         docker pull ubuntu
+         docker pull ubuntu:latest
 
-4.1.3 查看本地镜像
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   3.查看本地镜像
 
-   .. code:: shell
+      .. code:: shell
 
-      docker images
+         docker images
 
-4.1.4 运行容器
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   4.运行容器
 
-   - 可以通过 ``exec`` 命令进入 ubuntu 容器
+      - 可以通过 ``exec`` 命令进入 ubuntu 容器
 
-   .. code:: shell
+      .. code:: shell
 
-      docker run -itd --name ubuntu-test ubuntu
+         docker run -itd --name ubuntu-test ubuntu
 
-4.1.5 安装成功
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   5.安装成功
 
-   .. code:: shell
+      .. code:: shell
 
-      docker ps
+         docker ps
 
-4.2 Docker 安装 Python
+12.2 Docker 安装 Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-4.2.1 test
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-4.2.2 test
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+12.3 Docker 安装 TensorFlow
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-5.Docker 使用示例
+
+12.4 Docker 安装 PyTorch
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+13.Docker 使用示例
 ----------------------------------------------------
 
-5.1 公司工作站环境
+13.1 公司工作站环境
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    1. 查看容器
@@ -313,10 +690,36 @@ Docker
 
       .. code-block:: shell
 
-         $ cd /workspace/work_dir/dataSets
+         $ cd /workspace/dataSets
       
    4. 退出 TensorFlow Docker(容器还在运行)
 
       .. code-block:: shell
 
          $ Ctrl + P + Q
+
+
+.. note:: 
+
+   - tf 环境的 docker，name 是 tf_env，已运行 jupyter notebook，192.168.0.66:7777
+   - torch 环境的 docker，name 是 torch_env，已运行 jupyter notebook，192.168.0.66:6666
+   - 初次进入需要密码，20160616
+   - 挂载的目录都是 /workspace/dataSets 挂载宿主机 /mnt/dataSets
+
+
+14.Kubernetes
+----------------------------------------------
+
+Docker Desktop 包含一个可以在 Mac 上运行的 Kubernetes 服务器，因此可以在 Kubernetes 上部署 Docker 工作负载.
+
+Kubernetes 的客户端命令是 ``kubectl``
+
+   - 将 Kubernetes 指向 docker-desktop:
+
+      .. code-block:: shell
+      
+         kubectl config get-contexts
+         kubectl config user-context docker-desktop
+
+
+
