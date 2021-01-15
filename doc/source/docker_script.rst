@@ -9,32 +9,32 @@ Docker
 
    - Docker 学习
 
-      - Docker 概述
-      - Docker 安装
-      - Docker 命令
+      - 1.Docker 概述
+      - 2.Docker 安装
+      - 3.Docker 命令
 
          - 镜像命令
          - 容器命令
          - 操作命令
 
-      - Docker 镜像
-      - 容器数据卷
-      - DockerFile
-      - Docker 网络原理
-      - IDEA 整合 Docker
-      - Docker Compose
-      - Docker Swarm
-      - CI/CD jenkins
+      - 4.Docker 镜像
+      - 5.容器数据卷
+      - 6.DockerFile
+      - 7.Docker 网络原理
+      - 8.Docker Compose
+      - 9.Docker Swarm
+      - 10.CI/CD jenkins
+      - 11.IDEA 整合 Docker
 
 1.Docker 概述
 -------------------------------------------
 
 1.1 Docker 历史
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   
+
    - Docker 历史
 
-      -  2010 年，几个搞 IT 的年轻人，就在美国成立了一加公司 dotCloud，做一些 PASS 的云计算服务！LXC 有关的容器技术。
+      -  2010 年，几个搞 IT 的年轻人在美国成立了一加公司 dotCloud，做一些 PASS 的云计算服务！LXC 有关的容器技术。
          他们将自己的技术(容器化技术)命名就是 Docker。Docker 刚刚诞生的时候，没有引起行业的注意，doctCloud 活不下去了。
       
       -  2013 年 Docker 开源。Docker 的优点越来越多地被人发现。Docker 每个月都会更新一个版本！
@@ -51,6 +51,7 @@ Docker
       - 管网：https://www.docker.com/
       - 文档：https://docs.docker.com/
       - 仓库：https://hub.docker.com/
+      - 阿里云仓库: 
 
 1.2 Docker 概述
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -198,21 +199,23 @@ Docker
 
    - 运行一个 ubuntu 容器
 
-   .. code-block:: shell
-   
-      $ docker run -i -t ubuntu /bin/bash
+      .. code-block:: shell
 
-      - 1.如果 ubuntu 在本地没有镜像，Docker 会从已配置的仓库中拉取，等同于: ``docker pull ubuntu``
-      - 2.Docker 会创建一个新容器，等同于: ``docker container create``
-      - 3.Docker 将一个读写文件系统分配给容器，作为其最后一层。这允许运行中的容器在其本地文件系统中创建或修改文件和目录
-      - 4.Docker 创建了一个网络接口，将容器连接到默认网络，因为您未指定任何网络选项。这包括为容器分配 IP 地址。默认情况下，容器可以使用主机的网络连接连接到外部网络
-      - 5.Docker 启动容器并执行 ``/bin/bash``。因为容器是交互式运行的，并且已附加到您的终端（由于 -i 和 -t 标志），所以您可以在输出记录到终端时使用键盘提供输入
-      - 6.当键入 ``exit`` 以终止 ``/bin/bash`` 命令时，容器将停止但不会被删除。您可以重新启动或删除它
+         $ docker run -i -t ubuntu /bin/bash
+
+   - 1.如果 ubuntu 在本地没有镜像，Docker 会从已配置的仓库中拉取，等同于: ``docker pull ubuntu``
+   - 2.Docker 会创建一个新容器，等同于: ``docker container create``
+   - 3.Docker 将一个读写文件系统分配给容器，作为其最后一层。这允许运行中的容器在其本地文件系统中创建或修改文件和目录
+   - 4.Docker 创建了一个网络接口，将容器连接到默认网络，因为您未指定任何网络选项。这包括为容器分配 IP 地址。默认情况下，容器可以使用主机的网络连接连接到外部网络
+   - 5.Docker 启动容器并执行 ``/bin/bash``。因为容器是交互式运行的，并且已附加到您的终端（由于 -i 和 -t 标志），所以您可以在输出记录到终端时使用键盘提供输入
+   - 6.当键入 ``exit`` 以终止 ``/bin/bash`` 命令时，容器将停止但不会被删除。您可以重新启动或删除它
 
 1.2.6 Docker 底层技术
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   Docker用Go编程语言编写，并利用 Linux 内核的多个功能来交付其功能.
+   Docker 是一个 Client-Server 结构的系统，Docker 的守护进程运行在主机上，通过 Socket 从客户端访问，Docker Server 接收到 Docker Client 的指令，就去执行这个命令。
+
+   Docker 用 Go 编程语言编写，并利用 Linux 内核的多个功能来交付其功能.
 
       - Namespaces
 
@@ -260,7 +263,7 @@ Docker
 
          $ uname -a
 
-2.3 Dcoker 安装
+2.2 Dcoker 安装
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    - 安装目录: https://docs.docker.com/get-docker/
@@ -268,7 +271,7 @@ Docker
       - macOS: https://docs.docker.com/docker-for-mac/install/
       - Linux: https://docs.docker.com/engine/install/
 
-2.3.1 macOS
+2.2.1 macOS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. 安装 Docker Desktop
@@ -290,7 +293,7 @@ Docker
 
    - https://docs.docker.com/docker-for-mac/install/
 
-2.3.2 Ubuntu
+2.2.2 Ubuntu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    1. 删除旧版本
@@ -371,19 +374,27 @@ Docker
 
       customized configuration files 需要手动删除
 
-2.3.3 Windows
+2.2.3 Windows
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.4 Docker Desktop 使用入门
+
+
+
+
+
+2.3 Docker Desktop 使用入门
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 0.查看 Docker 版本
-
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    .. code-block:: shell
 
       $ docker version
 
 1.运行 hello-word 容器
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. image:: ./image/docker_helloworld.png
 
    .. code-block:: shell
 
@@ -396,6 +407,7 @@ Docker
    - ``docker/getting-started``: 可用的镜像
 
 2.构建 App 容器、镜像
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    2.1 下载 App
 
@@ -480,6 +492,7 @@ Docker
          - http://localhost:3000/
 
 3.分享 App
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    3.1 创建一个 Repo
 
@@ -517,16 +530,56 @@ Docker
 
    3.3 在一个新的实例中运行镜像
 
-      - (1)`Play with Docker <https://labs.play-with-docker.com/>`_ 
-      - (2)登录 Docker Hub 账号
-      - (3)``+ ADD NEW INSTANCE``
-      - (4)运行容器
+      - (1) `Play with Docker <https://labs.play-with-docker.com/>`_ 
+      - (2) 登录 Docker Hub 账号
+      - (3) ``+ ADD NEW INSTANCE``
+      - (4) 运行容器
 
          .. code-block:: shell
 
             $ docker run -dp 3000:3000 YOUR-USER-NAME/getting-started
 
-4.
+4.持久化数据库
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   4.1 容器的文件系统
+   4.2 启动一个 ``ubuntu``容器，并创建一个文件 ``/data.txt``
+
+      .. code-block:: shell
+      
+         $ docker run -d ubuntu zsh -c "shuf -i 1-10000 -n 1 -o /data.txt && tail -f /dev/null"
+   
+   4.3 在 Docker Desktop 中代开 ``ubuntu`` 容器中的 CLI
+
+      .. code-block:: shell
+
+         $ cat /data.txt
+      
+      .. note:: 
+
+         - 或者在主机命令行中运行
+
+         .. code-block:: shell
+         
+            $ docker exec <container-id> cat /data.txt
+
+   4.4 启动另一个 ``ubuntu`` 容器(使用同一个 image)
+
+      .. code-block:: shell
+
+         $ docker run -it ubuntu ls /
+
+   4.5 删除第一个容器
+
+      .. code-block:: shell
+
+         $ docker rm -f <container-id>
+
+
+
+
+
+
 
 
 
@@ -539,41 +592,202 @@ Docker
    - docker image
    - docker container
 
-3.1 docker version
+3.1 docker help
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   - Docker 的版本信息
+
+      .. code-block:: shell
+
+         $ docker version
+         $ docker -f args
+         $ docker --kubeconfig args
+
+   - Docker 的系统信息，包括镜像、容器的数量
+
+      .. code-block:: shell
+
+         $ docker info
+   
+   - Docker 的帮助命令
+
+      .. code-block:: shell
+      
+         $ docker <command> --help
+
+3.2 docker 镜像命令
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+3.2.1 docker images 查看镜像
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    .. code-block:: shell
 
-      $ docker version
-      $ docker -f args
-      $ docker --kubeconfig args
+      $ docker images
+      $ docker images -a
+      $ docker images -q
+      $ docker images -aq
 
-3.2 docker build
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.2.2 docker search 搜索镜像
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. code-block:: shell
+
+      $ docker search mysql
+      $ docker search --filter=STARS=3000
+
+3.2.3 docker pull 下载镜像
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. code-block:: shell
+
+      $ docker pull <image>
+      $ docker pull <image>:<tag/version>
+
+      # <adderss>：镜像实际地址
+      $ docker pull <address>
+
+   .. note:: 
+
+      - 如果不写 ``tag``，默认就是 ``latest``
+      - docker 分层下载是 docker image 的核心，联合文件系统
+
+3.2.4 docker remove 删除镜像
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. code-block:: shell
+
+      # 删除指定容器
+      $ docker rmi -f <images-id>
+      
+      # 删除多个容器
+      $ docker rmi -f <images-id> <images-id> <images-id>
+      
+      # 删除全部镜像
+      $ docker rmi -f $(docker images -aq)
 
 
-3.3 docker run
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.3 docker 容器命令
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+3.3.1 新建容器并使用
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- 语法:
+
+   .. code-block:: shell
+
+      # 下载镜像
+      $ docker pull centos
+      
+      # 启动并进入容器
+      $ docker run [可选参数] image
+      $ docker run -it centos /bin/bin
+
+   - 参数说明
+
+      - ``--name=Name``：容器名字, 用来区分容器
+      - ``-d``: 后台运行方式
+      - ``-it``: 使用交互方式运行
+      - ``-p``: 指定容器的端口，-p 8080:8080
+         - ``-p ip:主机端口:容器端口``
+         - ``-p 主机端口:容器端口``: 常用
+         - ``-p 容器端口``
+         - ``-p``
+      - ``-p 随机指定端口``
+
+3.3.2 退出容器
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. code-block:: shell
+   
+      $ exit            # 从容器退回主机
+      $ Ctrl + P + Q    # 容器不停止退出
+
+3.3.3 查看容器
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      # 查看正在运行的容器
+      $ docker ps
+      $ docker ps -a    # 列出当前正在运行的容器 + 带出历史运行过的容器
+      $ docker ps -n=?  # 最近创建的容器
+      $ docker ps -q    # 只显示容器的编号
+
+3.3.4 删除容器
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. code-block:: shell
+
+      $ docker rm 容器id                 # 删除指定的容器, 不能删除正在运行的容器
+      $ docker rm -f ${docker ps -aq}   # 删除所有容器(包含正在运行的容器)
+      $ docker ps -a -q|xargs docker rm # 删除所有容器(包含正在运行的容器)
+
+3.3.5 启动、停止容器
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. code-block:: shell
+
+      $ docker start 容器id
+      $ docker restart 容器id
+      $ docker stop 容器id
+      $ docker kill 容器id
+
+3.4 其他常用命令
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+3.4.1 后台启动容器
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. code-block:: shell
+
+      $ docker run -d 镜像名
+      $ docker run -d centos
+      $ docker ps
+
+   .. note::
+
+      docker ps 会有问题，发现 ``centos`` 停止了:
+
+         - docker 容器使用后台运行，就必须要有一个前台进程，docker 发现没有应用，就会自动停止
+         - nginx 容器启动后，发现自己没有提供服务，就会立刻停止，没有程序了
+
+3.4.2 查看日志命令
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. code-block:: shell
+
+      $ docker logs --help
+      $ docker logs -tf --tail n 容器id
+      
+      # 自己写一段脚本
+      $ docker run -d centos /bin/sh -C "while true;do echo wangzhefeng;sleep 1;done"
+      $ docker ps
+      $ docker logs -tf tail 10 容器id
+
+- 参数说明
+   
+   - ``-tf``: 显示日志
+   - ``--tail number``: 要显示日志条数
 
 
+3.4.3 查看容器中的进程信息
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+   .. code-block:: shell
 
-3.3 docker image
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      $ docker top --help
+      $ docker top 容器id
 
-3.4 docker container
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.4.4 查看容器的元命令
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+   .. code-block:: shell
 
-3.5 docker attach
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      $ docker inspect --help
+      $ docker inspect 容器id
 
-
-
-
-
-
-
+3.4.5 进入正在运行的容器
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 
@@ -668,6 +882,10 @@ Docker
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+
+
+
+
 13.Docker 使用示例
 ----------------------------------------------------
 
@@ -698,28 +916,27 @@ Docker
 
          $ Ctrl + P + Q
 
+   .. note:: 
 
-.. note:: 
-
-   - tf 环境的 docker，name 是 tf_env，已运行 jupyter notebook，192.168.0.66:7777
-   - torch 环境的 docker，name 是 torch_env，已运行 jupyter notebook，192.168.0.66:6666
-   - 初次进入需要密码，20160616
-   - 挂载的目录都是 /workspace/dataSets 挂载宿主机 /mnt/dataSets
+      - tf 环境的 docker，name 是 tf_env，已运行 jupyter notebook，192.168.0.66:7777
+      - torch 环境的 docker，name 是 torch_env，已运行 jupyter notebook，192.168.0.66:6666
+      - 初次进入需要密码，20160616
+      - 挂载的目录都是 /workspace/dataSets 挂载宿主机 /mnt/dataSets
 
 
 14.Kubernetes
 ----------------------------------------------
 
-Docker Desktop 包含一个可以在 Mac 上运行的 Kubernetes 服务器，因此可以在 Kubernetes 上部署 Docker 工作负载.
+   Docker Desktop 包含一个可以在 Mac 上运行的 Kubernetes 服务器，因此可以在 Kubernetes 上部署 Docker 工作负载.
 
-Kubernetes 的客户端命令是 ``kubectl``
+   Kubernetes 的客户端命令是 ``kubectl``
 
-   - 将 Kubernetes 指向 docker-desktop:
+      - 将 Kubernetes 指向 docker-desktop:
 
-      .. code-block:: shell
-      
-         kubectl config get-contexts
-         kubectl config user-context docker-desktop
+         .. code-block:: shell
+         
+            kubectl config get-contexts
+            kubectl config user-context docker-desktop
 
 
 
