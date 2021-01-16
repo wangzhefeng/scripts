@@ -587,10 +587,7 @@ Docker
 3.Docker 命令
 ------------------------------------------------
 
-   - docker version
-   - docker run
-   - docker image
-   - docker container
+   .. image:: ./image/docker_cheetsheet.png
 
 3.1 docker help
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -707,8 +704,9 @@ Docker
 3.3.3 查看容器
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-      # 查看正在运行的容器
-      $ docker ps
+   .. code-block:: shell
+
+      $ docker ps       # 查看正在运行的容器
       $ docker ps -a    # 列出当前正在运行的容器 + 带出历史运行过的容器
       $ docker ps -n=?  # 最近创建的容器
       $ docker ps -q    # 只显示容器的编号
@@ -789,6 +787,142 @@ Docker
 3.4.5 进入正在运行的容器
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+   .. code-block:: shell
+
+      # 方式一: 新建一个命令行窗口
+      $ docker exec -it 容器id /bin/bash
+
+      # 方式二: 不新建一个命令行窗口
+      $ docker attach 容器id
+
+
+3.4.6 从容器内拷贝文件到主机上
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   - 拷贝是一个手动过程，可以使用 -v 卷技术将容器 ``/home`` 与 主机 ``/home`` 打通
+
+   .. code-block:: shell
+
+      $ docker cp 容器id:容器内路径 目的地主机地址
+
+3.4.7 从主机内拷贝文件到容器上
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. code-block:: shell
+
+      $ todo
+
+
+3.5 docker 命令练习
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+3.5.1 docker 安装 Nginx
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   1.搜索镜像
+
+      .. code-block:: shell
+
+         $ docker search nginx
+
+   2.下载镜像
+
+      .. code-block:: shell
+      
+         $ docker pull nginx
+
+   3.查看镜像
+
+      .. code-block:: shell
+
+         $ docker images
+
+   4.启动容器
+
+      .. code-block:: shell
+
+         $ docker run -d --name nginx01 -p 3344:80 nginx
+
+   5.查看容器
+
+      .. code-block:: shell
+      
+         $ curl localhost:3344
+
+   6.端口暴露的概念
+
+3.5.2 docker 安装 Tomcat
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   1.搜索镜像
+
+      .. code-block:: shell
+
+         $ docker search tomcat
+
+   2.下载镜像
+
+      .. code-block:: shell
+      
+         $ docker pull tomcat
+         
+         # 停止容器后，容器还可以查到，一般用来测试，用完即删除
+         $ docker run -it --rm tomcat:9.0
+
+   3.查看镜像
+
+      .. code-block:: shell
+
+         $ docker images
+
+   4.启动容器
+
+      .. code-block:: shell
+
+         $ docker run -d --name tomcat01 -p 3355:8080 tomcat
+
+   5.查看容器
+
+      https://localhost:3355
+
+   6.进入容器，查看 tomcat
+
+      .. code-block:: shell
+
+         $ docker exec -it tomcat01 /bin/bash
+
+3.5.3 docker 安装 ES + Kibana
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1.搜索镜像
+
+   .. code-block:: shell
+
+      $ docker search elasticsearch
+
+2.下载镜像
+
+   .. code-block:: shell
+
+      $ docker pull elasticsearch
+
+3.查看镜像
+
+   .. code-block:: shell
+
+      $ docker images
+
+4.启动容器
+
+   .. code-block:: shell
+
+      $ docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e 
+
+5.查看容器
+
+   .. code-block:: shell
+
+      $ docker 
 
 
 4.Docker 镜像
